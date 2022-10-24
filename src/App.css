@@ -1,38 +1,474 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+.redClr {
+  color: #ee2e24 !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.logo {
+  font-weight: 900;
+  width: 81px !important;
+  height: 29px !important;
+  /* vertical-align: middle !important; */
+}
+.margin-logo {
+  margin-right: 15rem;
+}
+.hover-blue div {
+  cursor: pointer;
+  font-weight: 500 !important;
+}
+.below-navbar-clr {
+  background-color: #f3f5f7 !important;
+}
+.hover-blue div:hover {
+  background-color: azure;
+}
+.icon-main:hover .iconDown {
+  transform: rotateX(180deg);
+  transition: transform 0.3s ease;
+}
+
+.searchContainer {
+  background: linear-gradient(135.46deg, #d11450, #df293a);
+  width: 100%;
+  padding: 10px 0 32px;
+  margin-bottom: 18px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.searchContainer__wrapper {
+  width: 74%;
+  box-sizing: border-box;
+  z-index: 10;
+  position: relative;
+  margin: 0 auto;
+}
+.searchContainer__bannerSvg--1 {
+  left: 8%;
+  top: -10px;
+}
+
+.searchContainer__bannerSvg {
+  position: absolute;
+  z-index: -1;
+}
+.searchContainer__bannerSvg--2 {
+  right: 8%;
+  top: 8px;
+}
+
+.searchContainer__tagline {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.5;
+  margin: 16px 0;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.searchInput {
+  height: 9vh !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* //image */
+.banner-container {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 32px 0;
+  padding: 0 80px;
+  width: 100%;
+}
+
+.banner__cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  min-height: 128px;
+  vertical-align: middle;
+}
+
+/*
+-----------------------------------------------------------
+WORLD MAP
+---------------------------------------------------------
+
+*/
+
+.world-main-container {
+  background-color: #f3f5f7;
+  padding: 40px 0;
+  align-items: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+}
+.world-map {
+  margin: 0 auto;
+  padding-right: 40px;
+  max-width: 720px;
+  max-height: 408px;
+}
+.world-img {
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+}
+.india-container {
+  top: 175px;
+  left: 275px;
+  height: 130px;
+  width: 110px;
+}
+.common-location-wrap {
+  color: rgba(0, 0, 0, 0.54);
+  background: transparent;
+  animation: 0s ease 0s 1 normal none running none;
+}
+.china-container {
+  top: 11px;
+  left: 450px;
+  height: 130px;
+  width: 110px;
+}
+.malaysia-container {
+  top: 155px;
+  left: 430px;
+  height: 130px;
+  width: 110px;
+}
+.nepal-container {
+  top: 35px;
+  left: 310px;
+  height: 130px;
+  width: 110px;
+}
+.indonesia-container {
+  top: 261px;
+  left: 377px;
+  height: 130px;
+  width: 110px;
+}
+.uae-container {
+  top: 64px;
+  left: 131px;
+  height: 130px;
+  width: 110px;
+}
+/*
+-----------------------------------------------------------
+WORLD Details
+---------------------------------------------------------
+
+*/
+
+.expansion {
+  display: inline-block;
+  padding: 0 30px;
+  transform: skewX(-30deg);
+}
+.border-left {
+  border-left: 1px solid #979797;
+}
+.numberCountries {
+  transform: skewX(30deg);
+}
+.numberCountries span {
+  display: block;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.87);
+  transform: skewX(3deg);
+}
+/*
+-----------------------------------------------------------
+WORLD Places ul
+---------------------------------------------------------
+
+*/
+.countryList {
+  margin: 40px 0;
+}
+.countryName {
+  margin: 20px 0;
+  width: 30%;
+  word-wrap: break-word;
+  font-weight: 500;
+}
+.circle {
+  display: inline-block;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+  margin-right: 12px;
+}
+/*
+-----------------------------------------------------------
+FOOTER
+---------------------------------------------------------
+
+*/
+.footer-main-wrapper {
+  background-color: #6d787d;
+}
+.margin-logo-footer {
+  margin: 0 4rem;
+}
+.footer-heading h5 {
+  color: #fff;
+}
+hr {
+  color: #fff;
+}
+.btn-footer {
+  height: 48px;
+  min-width: 100px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 12px 16px;
+  border: none;
+  text-align: left;
+  margin-left: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.footerIcons-container {
+  padding: 30px 80px !important;
+}
+.border-right {
+  border-right: 1px solid hsla(0, 0%, 100%, 0.582);
+}
+.footerAppIcons {
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.second-footer-links {
+  padding: 0 32px !important;
+  font-size: 14px;
+  text-align: left;
+  color: #fff;
+  max-height: 160px;
+}
+.second-footer-links-2 {
+  font-size: 14px;
+  text-align: left;
+  color: #fff;
+}
+
+a {
+  text-decoration: none !important;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/*SOCİAL İCONS*/
+
+/* footer social icons */
+
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+/* footer social icons */
+
+.social-network a.icoFacebook:hover {
+  background-color: #3b5998;
+}
+
+.social-network a.icoLinkedin:hover {
+  background-color: #007bb7;
+}
+.social-network a.icoTwitter:hover {
+  background-color: #00acee;
+}
+.social-network a.icoPinterest:hover {
+  background-color: #c82c2c;
+}
+.social-network a.icoInstagram:hover {
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i {
+  color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+  color: #44bcdd;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #595959;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-network a {
+  background-color: #f9f9f9;
+}
+
+/*
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+FILTER
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+
+*/
+.filter-container {
+  max-height: 50rem;
+
+  /* overflow-y: scroll; */
+  /* border-bottom: 1px solid gray; */
+}
+.hr-filter {
+  color: #e3e3e3;
+}
+.filter-label {
+  color: #222;
+  font-size: 14px;
+}
+input[type="checkbox"] {
+  accent-color: gray;
+}
+
+/*
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+Carousel and rest
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+
+*/
+.carousel-container {
+  width: 40%;
+  height: auto;
+}
+
+.banner-img {
+  height: 40vh !important;
+}
+.ratings {
+  background-color: rgb(68, 177, 13);
+  width: 3.1vw !important;
+}
+.room-pricing-margin {
+  margin-top: 4.9rem;
+}
+/* .roomSection-container {
+  left: 57vh;
+} */
+
+/* ROOM DETAILS */
+.carousel-container-details {
+  width: 100%;
+  height: 60vh;
+}
+.banner-img-details {
+  width: 100%;
+  /* height: 100%; */
+}
+.ratings-detail-border {
+  border: 2px solid #4a970f;
+}
+.ratings-detail-green {
+  color: #4a970f;
+}
+.green-background {
+  background-color: rgb(52, 96, 0);
+  border-radius: 3px;
+}
+.margin-amenities {
+  margin: 1rem 2rem;
+}
+
+.width0 {
+  width: 20%;
+}
+.width1 {
+  width: 40%;
+}
+.width2 {
+  width: 50%;
+}
+.width3 {
+  width: 60%;
+}
+.width4 {
+  width: 70%;
+}
+@media (max-width: 450px) {
+}
+
+@media (min-width: 1441px) {
 }
