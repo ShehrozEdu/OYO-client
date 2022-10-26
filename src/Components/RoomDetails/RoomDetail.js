@@ -1,22 +1,70 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useParams } from "react-router-dom";
+import Footer from "../Homepage/Footer";
 
 const RoomDetail = () => {
+  const initRooms = {
+    name: "",
+    area: "",
+    city: "",
+    ratings: "",
+    maxCount: 0,
+    roomType: "",
+    collections: [],
+    amenities: [],
+    collections_id: [],
+    accommodation: [],
+    accommodation_id: [],
+    category: [],
+    category_id: [],
+    phoneNumber: 0,
+    discountedRate: 0,
+    actualRate: 0,
+    description: "",
+    imageUrls: [],
+    currentBookings: [],
+  };
+  const [roomsDetails, setRoomsDetails] = useState({ ...initRooms });
+  const params = useParams();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 2,
+      items: 1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
   };
+  let getRoomsDetails = async () => {
+    let URL = "http://localhost:9000/api/get-rooms/" + params.id;
+    try {
+      let response = await axios.get(URL);
+
+      let { status, rooms } = response.data;
+
+      // console.log(rooms);
+      if (status === true) {
+        setRoomsDetails({ ...rooms });
+      } else {
+        setRoomsDetails({ ...initRooms });
+      }
+    } catch (error) {
+      alert(error);
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getRoomsDetails();
+    // console.log(roomsDetails.imageUrls);
+  }, []);
   return (
     <>
       <div className="roomDetails-container">
@@ -32,54 +80,33 @@ const RoomDetail = () => {
             containerclassName="carousel-container"
             className="carousel-container-details"
           >
-            <img
-              className="banner-img-details"
-              src="https://images.oyoroomscdn.com/uploads/hotel_image/102192/large/b6bbb10ed9dd289e.jpg"
-              alt="room"
-            />
-            <img
-              className="banner-img-details"
-              src="https://images.oyoroomscdn.com/uploads/hotel_image/102192/large/d50ee715e8233ec6.jpg"
-              alt="room"
-            />
-            <img
-              className="banner-img-details"
-              src="https://images.oyoroomscdn.com/uploads/hotel_image/102192/large/eaf76beee8328589.jpg"
-              alt="room"
-            />
-            <img
-              className="banner-img-details"
-              src="https://images.oyoroomscdn.com/uploads/hotel_image/102192/large/11263bf33c8b089a.jpg"
-              alt="room"
-            />
+            {roomsDetails.imageUrls?.map((item) => {
+              return (
+                <img className="banner-img-details" src={item} alt="room" />
+              );
+            })}
           </Carousel>
         </div>
         <div className="roomDetails-text-main d-flex col-12">
           <div className="col-7 d-flex justify-content-space-between">
             <div className="roomDetails-text-left p-5">
-              <h2 className="fw-bold ">OYO 72887 LODGE STAY Heights</h2>
-              <p className="small text-muted">147, RS PURA NEAR BORDER LINE</p>
+              <h2 className="fw-bold ">{roomsDetails.name}</h2>
+              <p className="small text-muted">{roomsDetails.area}</p>
               <span className="ratings-detail-border p-2">
                 <span className="small fw-bold ratings-detail-green">
-                  5.0
+                  {roomsDetails.ratings}
                   <i className="ms-2 fa-solid fa-star me-2"></i>
                   {`Check in rating >`}
                 </span>
                 <span className="small"> Delightful experience</span>
               </span>
               <h4 className="fw-bold mt-5">Description</h4>
-              <i>
-                Did you know that we’ve got 2.5 Crore bookings since March 2020?
-                And this is all thanks to the sanitisation & safety measures
-                followed at our properties, from disinfecting surfaces with
-                high-quality cleaning products and maintaining social distance
-                to using protective gear and more.
-              </i>
+              <i>{roomsDetails.description}</i>
 
               {/*----------------------------------------------
-             AMENITIES
-             ------------------------------------------------
-              */}
+           AMENITIES
+           ------------------------------------------------
+            */}
               <h4 className="fw-bold mt-5 ">Amenities</h4>
               <div className="d-flex align-items-center ">
                 <div className="d-flex flex-column">
@@ -109,10 +136,10 @@ const RoomDetail = () => {
               </div>
 
               {/*------------------------
-            
-                     RATINGS
-            ---------------------------
-             */}
+          
+                   RATINGS
+          ---------------------------
+           */}
               <div className="ratingsAndReviews mt-5">
                 <h4 className="fw-bold">Ratings and reviews</h4>
                 <svg
@@ -225,7 +252,8 @@ const RoomDetail = () => {
                 <div className="border mt-3 d-flex">
                   <div className="left border-end p-5 ">
                     <span className=" fw-bolder p-2 green-background text-light">
-                      5.0<i className="ms-2 fa-solid fa-star me-2"></i>
+                      {roomsDetails.ratings}
+                      <i className="ms-2 fa-solid fa-star me-2"></i>
                     </span>
                     <p className="small fw-bold m-0 p-0 mt-3">FABULOUS</p>
                     <p className="small m-0 p-0 ms-2">2 ratings</p>
@@ -252,9 +280,11 @@ const RoomDetail = () => {
           <div className="roomDetails-text-right p-5 col-5">
             <div className="d-flex flex-column p-3 testingWidth shadow">
               <div className="">
-                <span className="me-3 fw-bold fs-4">&#8377; 757</span>
+                <span className="me-3 fw-bold fs-4">
+                  &#8377; {roomsDetails.discountedRate}
+                </span>
                 <span>
-                  <strike>&#8377; 1447</strike>
+                  <strike>&#8377; {roomsDetails.actualRate}</strike>
                 </span>
                 <span className="ms-3" style={{ color: "rgb(245, 166, 35)" }}>
                   47% off
@@ -279,7 +309,9 @@ const RoomDetail = () => {
                   <p style={{ fontWeight: "500" }}>Total Price</p>
                   <p>(inc of all taxes)</p>
                 </div>
-                <div className="fw-bold">&#8377; 757 </div>
+                <div className="fw-bold">
+                  &#8377;{roomsDetails.discountedRate}{" "}
+                </div>
               </div>
               <div>
                 <button
@@ -312,7 +344,10 @@ const RoomDetail = () => {
                   <span className="text-muted">
                     By proceeding, you agree to our
                   </span>
-                  <span className="ms-2 fw-bold" style={{ color: "#ee2e24" }}>
+                  <span
+                    className="ms-2 fw-bold cursor-pointer"
+                    style={{ color: "#ee2e24" }}
+                  >
                     Guest Policies.
                   </span>
                 </p>
@@ -321,6 +356,8 @@ const RoomDetail = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };

@@ -233,9 +233,17 @@ const SearchContainer = () => {
             Over 157,000 hotels and homes across 35 countries
           </h1>
           <div className="p-lg-4 ms-lg-5 d-flex justify-content-center align-items-center searchInput position-relative">
-            <input type="text" className="p-lg-2 searchInput  rounded-start" />
+            <input
+              type="text"
+              placeholder="Search for a location"
+              className="p-lg-2 searchInput"
+            />
             <input type="date" className="p-lg-2 searchInput" />
-            <input type="text" className="p-lg-2 searchInput rounded-end" />
+            <input
+              type="text"
+              placeholder="Guest Counter"
+              className="p-lg-2 searchInput"
+            />
             <button className="btn btn-success px-5 py-3 "> Search</button>
           </div>
         </div>

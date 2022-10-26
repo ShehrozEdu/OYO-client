@@ -76,6 +76,7 @@
 }
 .searchInput {
   height: 9vh !important;
+  width: 70vw;
 }
 
 /* //image */
@@ -432,10 +433,12 @@ Carousel and rest
 /* ROOM DETAILS */
 .carousel-container-details {
   width: 100%;
-  height: 60vh;
+
+  height: 70vh;
 }
 .banner-img-details {
   width: 100%;
+
   /* height: 100%; */
 }
 .ratings-detail-border {
@@ -478,7 +481,78 @@ button {
 .testingWidth {
   width: 30vw;
 }
+/*
+-----------------------------------------------------------
+-----------------------------------------------------------
 
+User Component
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+
+*/
+.user-container-wrap {
+  background-image: url("https://assets.oyoroomscdn.com/cmsMedia/b3c9905c-31d1-4349-8594-c07deae6b36d.jpg");
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-size: cover;
+  padding-bottom: 20px !important;
+}
+.user-container-wrap::before {
+  background: rgba(0, 0, 0, 0.2);
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.user-container-header {
+  padding: 30px 80px;
+  height: fit-content;
+}
+.user-container-body {
+  align-items: stretch;
+  margin-top: 7.2rem;
+  margin-left: 5rem;
+}
+.left-user-container {
+  color: #fff;
+  padding: 90px 120px 0 220px !important;
+
+  height: fit-content;
+}
+
+.user-left-text-head {
+  padding: 0 0 17px;
+  line-height: 1.04;
+}
+.user-left-text-body {
+  padding: 0;
+  line-height: 1.56;
+  margin: 0;
+}
+.right-user-container-wrap {
+  width: 480px !important;
+  margin: 15px 130px 88px 0 !important;
+  background-color: #fff;
+  height: fit-content;
+  box-shadow: 0 1px 8px 0 rgb(0 0 0 / 20%), 0 3px 3px -2px rgb(0 0 0 / 12%),
+    0 3px 4px 0 rgb(0 0 0 / 14%);
+}
+.right-user-container {
+  position: relative;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.alreadyAccount {
+  color: #c82c2c;
+  font-weight: 500;
+}
 @media (max-width: 450px) {
 }
 
