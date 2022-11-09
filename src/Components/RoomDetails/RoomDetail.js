@@ -1,9 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 import Footer from "../Homepage/Footer";
+import SearchContainer2 from "../Rooms/SearchContainer2";
+
+// import { DataContext } from "../ContextApi/api";
 
 const RoomDetail = () => {
   const initRooms = {
@@ -29,6 +33,9 @@ const RoomDetail = () => {
   };
   const [roomsDetails, setRoomsDetails] = useState({ ...initRooms });
   const params = useParams();
+  const checkInDate = moment(params.checkIn, "DD-MM-YYYY");
+  const checkOutDate = moment(params.checkOut, "DD-MM-YYYY");
+  const total = moment.duration(checkOutDate.diff(checkInDate)).asDays() + 1;
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -43,6 +50,7 @@ const RoomDetail = () => {
       items: 1,
     },
   };
+
   let getRoomsDetails = async () => {
     let URL = "http://localhost:9000/api/get-rooms/" + params.id;
     try {
@@ -68,6 +76,7 @@ const RoomDetail = () => {
   return (
     <>
       <div className="roomDetails-container">
+        <SearchContainer2 />
         <div>
           <Carousel
             responsive={responsive}
@@ -294,7 +303,7 @@ const RoomDetail = () => {
               <div className="bookingDate-details border p-1 shadow d-flex">
                 <div className="border-end me-1 p-2">
                   <span className="  small fw-bold">
-                    Mon, 24 Oct- Tue, 25 Oct
+                    {`${params.checkIn} to ${params.checkOut}`}
                   </span>
                 </div>
                 <div className="me-1 p-2">
@@ -310,7 +319,7 @@ const RoomDetail = () => {
                   <p>(inc of all taxes)</p>
                 </div>
                 <div className="fw-bold">
-                  &#8377;{roomsDetails.discountedRate}{" "}
+                  &#8377;{total * roomsDetails.discountedRate}
                 </div>
               </div>
               <div>

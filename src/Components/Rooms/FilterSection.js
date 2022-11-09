@@ -5,7 +5,7 @@ const FilterSection = () => {
     <>
       <div className="d-flex flex-column p-4 col-3 filter-container shadow position-sticky">
         <h2 className="fw-bold">Filters</h2>
-        <p className="fw-bold">Popular locations in Jammu, Jammu</p>
+        <p className="fw-bold">Popular locations in this city</p>
         <input type="text" placeholder="Search.." className="p-2" />
         <label htmlFor="customRange2" className="form-label mt-3 fw-bold">
           Price

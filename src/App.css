@@ -21,6 +21,13 @@
 .margin-logo {
   margin-right: 15rem;
 }
+.margin-logo-search {
+  /* margin-right: 15rem; */
+  font-size: 900;
+}
+.z-index-search {
+  z-index: 10000000 !important;
+}
 .hover-blue div {
   cursor: pointer;
   font-weight: 500 !important;
@@ -39,8 +46,9 @@
 .searchContainer {
   background: linear-gradient(135.46deg, #d11450, #df293a);
   width: 100%;
+
   padding: 10px 0 32px;
-  margin-bottom: 18px;
+  /* margin-bottom: 18px;  */
   position: relative;
   box-sizing: border-box;
 }
@@ -76,7 +84,16 @@
 }
 .searchInput {
   height: 9vh !important;
-  width: 70vw;
+  /* width: 70vw; */
+}
+.location_list {
+  top: 3.5rem !important;
+  width: 16vw;
+}
+.btnAdd {
+  height: 3.2vh;
+  width: 1.8vw;
+  padding: 0 7.8px;
 }
 
 /* //image */
@@ -550,7 +567,7 @@ User Component
 }
 
 .alreadyAccount {
-  color: #c82c2c;
+  color: #c82c2c !important;
   font-weight: 500;
 }
 @media (max-width: 450px) {

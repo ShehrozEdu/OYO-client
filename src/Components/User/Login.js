@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,10 +7,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [] = useState("");
 
-  const login = () => {
+  const login = async () => {
     const user = { email, password };
-    console.log(user);
-    alert("Logged In Successfully!");
+    try {
+      let URL = "http://localhost:9000/api/login";
+      const result = await axios.post(URL, user).data;
+      // navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -69,9 +75,9 @@ const Login = () => {
                     Login
                   </button>
                   <div className="mt-4 ">
-                    <span className="alreadyAccount">New here?</span>
+                    <span className=""> New here?</span>
                     <Link
-                      className="text-muted ms-1 text-underline-danger "
+                      className="text-muted ms-1 alreadyAccount "
                       to="/register"
                     >
                       Click to register

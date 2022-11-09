@@ -7,7 +7,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPass, setConfirmedPass] = useState("");
-  const [] = useState("");
   let navigate = useNavigate();
 
   const register = async () => {
@@ -16,7 +15,7 @@ const Register = () => {
       try {
         let URL = "http://localhost:9000/api/register";
         const result = await axios.post(URL, user).data;
-        localStorage.setItem("user_auth-OYO", result);
+        localStorage.setItem("user_auth-OYO", JSON.stringify(result));
         navigate("/");
       } catch (error) {
         console.log(error);
@@ -102,11 +101,9 @@ const Register = () => {
                     Register
                   </button>
                   <div className="mt-4 ">
-                    <span className="alreadyAccount">
-                      Already have an account?
-                    </span>
+                    <span className="">Already have an account?</span>
                     <Link
-                      className="text-muted ms-1 text-underline-danger "
+                      className="alreadyAccount text-muted ms-1 text-underline-danger "
                       to="/login"
                     >
                       Click here
