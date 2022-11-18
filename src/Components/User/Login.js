@@ -1,18 +1,20 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [] = useState("");
-
-  const login = async () => {
+  // const [] = useState("");
+  const navigate = useNavigate();
+  const loginAPI = async () => {
     const user = { email, password };
     try {
       let URL = "http://localhost:9000/api/login";
-      const result = await axios.post(URL, user).data;
-      // navigate("/");
+      const { data } = await axios.post(URL, user);
+      localStorage.setItem("OYO_Auth", JSON.stringify(data.user));
+      // console.log(data.user);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +72,7 @@ const Login = () => {
 
                   <button
                     className="btn w-75 ms-5 btn-success mt-3 px-3"
-                    onClick={login}
+                    onClick={loginAPI}
                   >
                     Login
                   </button>

@@ -73,6 +73,25 @@ const RoomDetail = () => {
     getRoomsDetails();
     // console.log(roomsDetails.imageUrls);
   }, []);
+
+  const bookRoom = async () => {
+    const bookingsDetails = {
+      roomsDetails,
+      userId: JSON.parse(localStorage.getItem("OYO_Auth")),
+      checkInDate,
+      checkOutDate,
+      total,
+    };
+    try {
+      const result = await axios.post(
+        "http://localhost:9000/api/book-rooms",
+        bookingsDetails
+      );
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="roomDetails-container">
@@ -326,6 +345,7 @@ const RoomDetail = () => {
                 <button
                   className="w-100 p-3 text-light fw-bold border-0"
                   style={{ backgroundColor: "#4a970f" }}
+                  onClick={bookRoom}
                 >
                   Continue to Book
                 </button>

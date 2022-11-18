@@ -9,14 +9,15 @@ const Register = () => {
   const [confirmedPass, setConfirmedPass] = useState("");
   let navigate = useNavigate();
 
-  const register = async () => {
+  const registerApi = async () => {
     if (password === confirmedPass) {
       const user = { name, email, password, confirmedPass };
       try {
         let URL = "http://localhost:9000/api/register";
-        const result = await axios.post(URL, user).data;
-        localStorage.setItem("user_auth-OYO", JSON.stringify(result));
-        navigate("/");
+        const { data } = await axios.post(URL, user);
+        localStorage.setItem("OYO_auth", JSON.stringify(data.user));
+        // console.log(result);
+        navigate("/login");
       } catch (error) {
         console.log(error);
       }
@@ -96,7 +97,7 @@ const Register = () => {
 
                   <button
                     className="btn w-75 ms-5 btn-success mt-3 px-3"
-                    onClick={register}
+                    onClick={registerApi}
                   >
                     Register
                   </button>

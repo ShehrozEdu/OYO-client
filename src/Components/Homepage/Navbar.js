@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const user = JSON.parse(localStorage.getItem("OYO_Auth"));
+  const logout = () => {
+    localStorage.remove("OYO_Auth");
+    window.location.reload();
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light ">
@@ -144,9 +149,15 @@ const Navbar = () => {
                   fill="#000000"
                 ></path>
               </svg>
-              <Link className="nav-link" to="/register">
-                Login/Signup
-              </Link>
+              {user ? (
+                <span className="text-black cursor-pointer" onClick={logout}>
+                  {user.email}
+                </span>
+              ) : (
+                <Link className="nav-link" to="/register">
+                  Login/Signup
+                </Link>
+              )}
             </div>
           </div>
         </div>
