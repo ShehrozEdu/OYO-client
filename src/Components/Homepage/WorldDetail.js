@@ -81,60 +81,60 @@ const WorldDetail = () => {
               </div>
             </div>
           </div>
-          <ul class="countryList p-0 d-flex flex-wrap">
-            <li class="countryName d-block">
+          <ul className="countryList p-0 d-flex flex-wrap">
+            <li className="countryName d-block">
               <span
-                class="circle"
+                className="circle"
                 style={{ backgroundColor: " rgb(26, 182, 79)" }}
               >
                 &nbsp;
               </span>
-              <span class="">India</span>
+              <span className="">India</span>
             </li>
-            <li class="countryName d-block">
+            <li className="countryName d-block">
               <span
-                class="circle"
+                className="circle"
                 style={{ backgroundColor: "rgb(255, 127, 123)" }}
               >
                 &nbsp;
               </span>
-              <span class="">China</span>
+              <span className="">China</span>
             </li>
-            <li class="countryName d-block">
+            <li className="countryName d-block">
               <span
-                class="circle"
+                className="circle"
                 style={{ backgroundColor: "rgb(245, 166, 35)" }}
               >
                 &nbsp;
               </span>
-              <span class="">Malaysia</span>
+              <span className="">Malaysia</span>
             </li>
-            <li class="countryName d-block">
+            <li className="countryName d-block">
               <span
-                class="circle"
+                className="circle"
                 style={{ backgroundColor: " rgb(95, 214, 242)" }}
               >
                 &nbsp;
               </span>
-              <span class="">Nepal</span>
+              <span className="">Nepal</span>
             </li>
-            <li class="countryName d-block">
+            <li className="countryName d-block">
               <span
-                class="circle"
+                className="circle"
                 style={{ backgroundColor: "rgb(254, 148, 241)" }}
               >
                 &nbsp;
               </span>
-              <span class="">Indonesia</span>
+              <span className="">Indonesia</span>
             </li>
-            <li class="countryName d-block">
+            <li className="countryName d-block">
               <span
-                class="circle"
+                className="circle"
                 style={{ backgroundColor: "rgb(126, 137, 228)" }}
               >
                 &nbsp;
               </span>
-              <span class="">UAE</span>
+              <span className="">UAE</span>
             </li>
           </ul>
         </div>

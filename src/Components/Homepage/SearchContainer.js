@@ -76,12 +76,12 @@ const SearchContainer = () => {
     <>
       <div className="searchContainer">
         <div className="searchContainer__wrapper">
-          <span class="searchContainer__bannerSvg searchContainer__bannerSvg--1">
+          <span className="searchContainer__bannerSvg searchContainer__bannerSvg--1">
             <svg width="212" height="93" xmlns="http://www.w3.org/2000/svg">
               <g
                 transform="translate(0 -31)"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 opacity=".6"
               >
                 <rect
@@ -103,7 +103,7 @@ const SearchContainer = () => {
                 <path
                   d="M62.465 95.555H115.3v27.822H62.465V95.555zm149.313 28.424H.482l.14-.6h211.156v.6zM63.78 35.212h50.956v4.694H63.78v-4.694z"
                   fill="#A81433"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   fill="#880F2F"
@@ -124,12 +124,12 @@ const SearchContainer = () => {
                 <path
                   d="M120.978 107.52h10.324v15.857h-10.324V107.52zm-3.426-58.042h17.176v3.471h-17.177v-3.471zm0 10.321h17.176v3.472h-17.177v-3.472zm0 10.325h17.176v3.47h-17.177v-3.47zm0 10.324h17.176v3.47h-17.177v-3.47z"
                   fill="#A81433"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   d="M73.353 49.478h34.722v3.471H73.353v-3.471zm0 10.321h34.722v3.472H73.353v-3.472zm0 10.324h34.722v3.472H73.353v-3.472zm0 10.325h34.722v3.47H73.353v-3.47z"
                   fill="#880F2F"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   fill="#A81433"
@@ -138,7 +138,7 @@ const SearchContainer = () => {
                 <path
                   d="M78.398 32.349h1.126v2.864h-1.126v-2.864zm20.595 0h1.126v2.864h-1.126v-2.864z"
                   fill="#A81433"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <g transform="translate(5.912 63.749)">
                   <circle
@@ -193,7 +193,7 @@ const SearchContainer = () => {
               <g
                 transform="translate(0 -31)"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 opacity=".6"
               >
                 <rect
@@ -215,7 +215,7 @@ const SearchContainer = () => {
                 <path
                   d="M62.465 95.555H115.3v27.822H62.465V95.555zm149.313 28.424H.482l.14-.6h211.156v.6zM63.78 35.212h50.956v4.694H63.78v-4.694z"
                   fill="#A81433"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   fill="#880F2F"
@@ -236,12 +236,12 @@ const SearchContainer = () => {
                 <path
                   d="M120.978 107.52h10.324v15.857h-10.324V107.52zm-3.426-58.042h17.176v3.471h-17.177v-3.471zm0 10.321h17.176v3.472h-17.177v-3.472zm0 10.325h17.176v3.47h-17.177v-3.47zm0 10.324h17.176v3.47h-17.177v-3.47z"
                   fill="#A81433"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   d="M73.353 49.478h34.722v3.471H73.353v-3.471zm0 10.321h34.722v3.472H73.353v-3.472zm0 10.324h34.722v3.472H73.353v-3.472zm0 10.325h34.722v3.47H73.353v-3.47z"
                   fill="#880F2F"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   fill="#A81433"
@@ -250,7 +250,7 @@ const SearchContainer = () => {
                 <path
                   d="M78.398 32.349h1.126v2.864h-1.126v-2.864zm20.595 0h1.126v2.864h-1.126v-2.864z"
                   fill="#A81433"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <g transform="translate(5.912 63.749)">
                   <circle

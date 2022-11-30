@@ -1,11 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("OYO_Auth"));
-  const logout = () => {
-    localStorage.remove("OYO_Auth");
-    window.location.reload();
+  let logout = () => {
+    Swal.fire({
+      title: "Are you sure to logout?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("OYO_Auth");
+        window.location.reload();
+      }
+    });
   };
   return (
     <>
@@ -58,8 +70,8 @@ const Navbar = () => {
                 <path
                   d="M8.0625 13.9038L12 3.75L15.9375 13.7055L19.875 5.01923M4.125 5.01923L6.75 11.3654"
                   stroke="#212121"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>{" "}
               </svg>
               <div className="d-flex flex-column  justify-content-center  border-end me-lg-3 ">
@@ -82,11 +94,11 @@ const Navbar = () => {
                 height="28"
                 viewBox="0 0 20 17"
               >
-                <g fill="none" fill-rule="evenodd">
+                <g fill="none" fillRule="evenodd">
                   <path d="M-2-4h24v24H-2z"></path>{" "}
                   <path
                     fill="black"
-                    fill-rule="nonzero"
+                    fillRule="nonzero"
                     d="M9.943 0c-1.9 0-3.55.237-3.82 1.818H3.181C1.41 1.818 0 3.345 0 5.192v7.791c0 1.846 1.41 3.38 3.182 3.38h13.636c1.772 0 3.182-1.534 3.182-3.38V5.192c0-1.847-1.41-3.374-3.182-3.374h-3.054C13.494.237 11.844 0 9.944 0zM10 .911c1.385 0 2.47-.093 2.727.907H7.273C7.53.818 8.615.911 10 .911zM3.182 2.727h13.636c1.25 0 2.273 1.004 2.273 2.306v.996c-1.926 1.136-4.512 1.925-7.415 2.153-.23-.694-.919-1.203-1.733-1.203-.814 0-1.503.509-1.733 1.203-2.846-.224-5.387-.986-7.3-2.086V5.033c0-1.302 1.022-2.306 2.272-2.306zM19.09 7.19v5.781c0 1.398-1.023 2.485-2.273 2.485H3.182c-1.25 0-2.273-1.087-2.273-2.485V7.273c1.996 1.125 4.442 1.734 7.205 1.962l.073.287a1.83 1.83 0 0 0 1.756 1.363 1.83 1.83 0 0 0 1.745-1.322c.012-.04.077-.288.086-.328 2.815-.232 5.304-.887 7.317-2.046zM10 8c.558 0 1 .442 1 1s-.442 1-1 1-1-.442-1-1 .442-1 1-1z"
                     opacity=".7"
                   ></path>{" "}
@@ -111,20 +123,20 @@ const Navbar = () => {
                 <path
                   d="M11 6H5"
                   stroke="#6F787C"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>{" "}
                 <path
                   d="M19 12H17"
                   stroke="#6F787C"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>{" "}
                 <path
                   d="M14 8H22V22H14M14 22V2H2V22H14ZM6 16H10V22H6V16Z"
                   stroke="#6F787C"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>{" "}
               </svg>
               <div className="d-flex flex-column  justify-content-center  border-end me-lg-3">
@@ -136,12 +148,11 @@ const Navbar = () => {
                 </p>
               </div>
               <svg
-                className="me-2"
+                className="me-2 bi bi-people"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
                 fill="none"
-                class="bi bi-people"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -150,9 +161,28 @@ const Navbar = () => {
                 ></path>
               </svg>
               {user ? (
-                <span className="text-black cursor-pointer" onClick={logout}>
-                  {user.email}
-                </span>
+                <div className="btn-group">
+                  <button
+                    type="button"
+                    className="btn btn-danger dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {user.email}
+                  </button>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a className="dropdown-item" href="/bookings">
+                        My Bookings
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" onClick={logout}>
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               ) : (
                 <Link className="nav-link" to="/register">
                   Login/Signup

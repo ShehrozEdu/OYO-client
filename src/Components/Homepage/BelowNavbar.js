@@ -5,32 +5,32 @@ export default function BelowNavbar() {
       <div className="shadow ">
         <div className="d-lg-flex d-md-flex below-navbar-clr d-none  text-center justify-content-around bg-light py-2  mb-2 hover-blue">
           <div className="small icon-main p-2">
-            Bangalore <i class="fa-solid fa-caret-down iconDown"></i>
+            Bangalore <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Chennai <i class="fa-solid fa-caret-down iconDown"></i>
+            Chennai <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Delhi <i class="fa-solid fa-caret-down iconDown"></i>
+            Delhi <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Gurgaon <i class="fa-solid fa-caret-down iconDown"></i>
+            Gurgaon <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Hyderabad <i class="fa-solid fa-caret-down iconDown"></i>
+            Hyderabad <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Kolkata <i class="fa-solid fa-caret-down iconDown"></i>
+            Kolkata <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Mumbai <i class="fa-solid fa-caret-down iconDown"></i>
+            Mumbai <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
-            Noida <i class="fa-solid fa-caret-down iconDown"></i>
+            Noida <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
           <div className="small icon-main p-2">
             {" "}
-            Pune <i class="fa-solid fa-caret-down iconDown"></i>
+            Pune <i className="fa-solid fa-caret-down iconDown"></i>
           </div>
         </div>
       </div>

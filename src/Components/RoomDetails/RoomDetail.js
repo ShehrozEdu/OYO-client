@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import StripeCheckout from "react-stripe-checkout";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import Footer from "../Homepage/Footer";
-import SearchContainer2 from "../Rooms/SearchContainer2";
 
-// import { DataContext } from "../ContextApi/api";
+import { DataContext } from "../ContextApi/api";
 
 const RoomDetail = () => {
   const initRooms = {
@@ -32,10 +33,15 @@ const RoomDetail = () => {
     currentBookings: [],
   };
   const [roomsDetails, setRoomsDetails] = useState({ ...initRooms });
+  const [totalAmount, setTotalAmount] = useState();
   const params = useParams();
+  const { checkIn, checkOut } = useContext(DataContext);
   const checkInDate = moment(params.checkIn, "DD-MM-YYYY");
+  // console.log(checkIn);
   const checkOutDate = moment(params.checkOut, "DD-MM-YYYY");
-  const total = moment.duration(checkOutDate.diff(checkInDate)).asDays() + 1;
+  const totalDays =
+    moment.duration(checkOutDate.diff(checkInDate)).asDays() + 1;
+  // console.log(typeof total);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -61,6 +67,7 @@ const RoomDetail = () => {
       // console.log(rooms);
       if (status === true) {
         setRoomsDetails({ ...rooms });
+        setTotalAmount(rooms.discountedRate);
       } else {
         setRoomsDetails({ ...initRooms });
       }
@@ -74,20 +81,31 @@ const RoomDetail = () => {
     // console.log(roomsDetails.imageUrls);
   }, []);
 
-  const bookRoom = async () => {
+  const onToken = async (token) => {
     const bookingsDetails = {
       roomsDetails,
       userId: JSON.parse(localStorage.getItem("OYO_Auth")),
       checkInDate,
       checkOutDate,
-      total,
+      totalDays,
+      totalAmount,
+      token,
     };
     try {
       const result = await axios.post(
         "http://localhost:9000/api/book-rooms",
         bookingsDetails
       );
-      console.log(result);
+      // console.log(result);
+      if (result) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Room has been booked successfully",
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => window.location.assign("/"));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +113,6 @@ const RoomDetail = () => {
   return (
     <>
       <div className="roomDetails-container">
-        <SearchContainer2 />
         <div>
           <Carousel
             responsive={responsive}
@@ -177,7 +194,7 @@ const RoomDetail = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0)">
+                  <g clipPath="url(#clip0)">
                     <path
                       d="M79.3193 20H5.2916C2.37387 20 0 17.6261 0 14.7084V5.2916C0 2.37387 2.37387 0 5.2916 0H79.3193C82.237 0 84.6109 2.37387 84.6109 5.2916V14.7084C84.6109 17.6261 82.237 20 79.3193 20ZM5.2916 0.865401C2.84932 0.865401 0.865401 2.85274 0.865401 5.2916V14.7084C0.865401 17.1507 2.85274 19.1346 5.2916 19.1346H79.3193C81.7616 19.1346 83.7455 17.1473 83.7455 14.7084V5.2916C83.7455 2.84932 81.7582 0.865401 79.3193 0.865401H5.2916Z"
                       fill="#E81D2D"
@@ -337,19 +354,25 @@ const RoomDetail = () => {
                   <p style={{ fontWeight: "500" }}>Total Price</p>
                   <p>(inc of all taxes)</p>
                 </div>
-                <div className="fw-bold">
-                  &#8377;{total * roomsDetails.discountedRate}
+                <div className="fw-bold">&#8377;{totalAmount * totalDays}</div>
+              </div>
+              {checkIn && checkOut && (
+                <div>
+                  <StripeCheckout
+                    token={onToken}
+                    currency="INR"
+                    amount={totalAmount * totalDays * 100}
+                    stripeKey="pk_test_51Llp75SEC2o5dnLQEGLRJ9zW23jfK2ibBWWgbfu3NpySx7zXhKzHvc2vnK19cP2q17PdApp9dMEMaJKRHLkerPvA00fjfYj904"
+                  >
+                    <button
+                      className="w-100 p-3 text-light fw-bold border-0"
+                      style={{ backgroundColor: "#4a970f" }}
+                    >
+                      Continue to Book
+                    </button>
+                  </StripeCheckout>
                 </div>
-              </div>
-              <div>
-                <button
-                  className="w-100 p-3 text-light fw-bold border-0"
-                  style={{ backgroundColor: "#4a970f" }}
-                  onClick={bookRoom}
-                >
-                  Continue to Book
-                </button>
-              </div>
+              )}
               <div className="small mt-2">
                 <span style={{ color: "#ee2e24" }} className="me-2 fw-bold ">
                   Cancellation Policy
@@ -362,7 +385,7 @@ const RoomDetail = () => {
                     viewBox="0 0 18 18"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M9.004.957c4.436 0 8.047 3.611 8.047 8.047s-3.61 8.047-8.047 8.047c-4.436 0-8.047-3.61-8.047-8.047C.957 4.568 4.568.957 9.004.957zM9 0C4.02 0 0 4.02 0 9s4.02 9 9 9 9-4.02 9-9-4.02-9-9-9zm.524 13.039v-4.96c0-.34-.226-.6-.52-.6-.294 0-.52.26-.52.6v4.96c0 .34.226.6.52.6.294 0 .52-.28.52-.6zM9.04 4.443a.681.681 0 00-.68.679c0 .373.306.679.68.679a.682.682 0 00.679-.68.681.681 0 00-.68-.678z"
                       opacity=".7"
                       fill="#ee2e24"

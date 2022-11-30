@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
-const FilterSection = () => {
+const FilterSection = ({ setRoomList, duplicateRoom }) => {
+  const [searchKey, setSearchKey] = useState("");
+  const filterBySearch = () => {
+    const tempRooms = duplicateRoom.filter((room) =>
+      room.name?.toLowerCase()?.includes(searchKey?.toLowerCase())
+    );
+    setRoomList(tempRooms);
+  };
   return (
     <>
       <div className="d-flex flex-column p-4 col-3 filter-container shadow position-sticky">
         <h2 className="fw-bold">Filters</h2>
         <p className="fw-bold">Popular locations in this city</p>
-        <input type="text" placeholder="Search.." className="p-2" />
+        <input
+          type="text"
+          placeholder="Search.."
+          className="p-2"
+          value={searchKey}
+          onChange={(e) => {
+            setSearchKey(e.target.value);
+          }}
+          onKeyUp={filterBySearch}
+        />
         <label htmlFor="customRange2" className="form-label mt-3 fw-bold">
           Price
         </label>

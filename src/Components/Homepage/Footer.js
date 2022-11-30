@@ -40,20 +40,20 @@ const Footer = () => {
                 <path
                   d="M11 6H5"
                   stroke="#6F787C"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M19 12H17"
                   stroke="#6F787C"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M14 8H22V22H14M14 22V2H2V22H14ZM6 16H10V22H6V16Z"
                   stroke="#6F787C"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
             </span>

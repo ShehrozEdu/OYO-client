@@ -73,7 +73,7 @@ const RoomsSection = () => {
                   <p className="small">{item.area}</p>
                   <p className="small">
                     <span className="ratings text-light p-1 ">
-                      5.0 <i className="fa-solid fa-star"></i>
+                      {item.ratings} <i className="fa-solid fa-star"></i>
                     </span>
                     <span> (2 ratings) . Fabulous</span>
                   </p>

@@ -11,10 +11,12 @@ const SearchContainer2 = () => {
   const [location, setLocation] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [selectLocation, setSelectLocation] = useState(null);
+  const [duplicateRoom, setDuplicateRoom] = useState([]);
   const { roomList, setRoomList, checkIn, setCheckIn, checkout, setCheckOut } =
     useContext(DataContext);
   const navigate = useNavigate();
   let locationRef = useRef();
+  // console.log(checkIn);
   const { RangePicker } = DatePicker;
   let getLocationList = async (event) => {
     let city = event.target.value;
@@ -51,8 +53,10 @@ const SearchContainer2 = () => {
       let response = await axios.get(url);
       let { result } = response.data;
       setRoomList([...result]);
+      setDuplicateRoom([...result]);
       const test = result.map((item) => item.name);
       // console.log(result);
+
       navigate("/rooms/" + test);
     } catch (error) {
       alert(error);
@@ -70,13 +74,47 @@ const SearchContainer2 = () => {
     }
   };
   const filterByDates = (dates) => {
+    let tempRooms = [];
+    let availability = false;
+
     setCheckIn(moment(dates[0]).format("DD-MM-YYYY"));
     setCheckOut(moment(dates[1]).format("DD-MM-YYYY"));
+
+    for (const room of duplicateRoom) {
+      if (room.currentBookings?.length > 0) {
+        for (const booking of room.booking.currentBookings) {
+          if (
+            !moment(moment(dates[0]).format("DD-MM-YYYY")).isBetween(
+              booking.checkInDate,
+              booking.checkOutDate
+            ) &&
+            !moment(moment(dates[1]).format("DD-MM-YYYY")).isBetween(
+              booking.checkInDate,
+              booking.checkOutDate
+            )
+          ) {
+            if (
+              moment(dates[0]).format("DD-MM-YYYY") !== booking.checkInDate &&
+              moment(dates[0]).format("DD-MM-YYYY") !== booking.checkOutDate &&
+              moment(dates[1]).format("DD-MM-YYYY") !== booking.checkInDate &&
+              moment(dates[1]).format("DD-MM-YYYY") !== booking.checkOutDate
+            ) {
+              availability = true;
+            }
+          }
+        }
+      }
+    }
+
+    if (availability === true || roomList.currentBookings?.length == 0) {
+      tempRooms.push(roomList);
+    }
+    setRoomList(tempRooms);
   };
 
   return (
     <>
-      <div className="searchContainer d-flex position-fixed ">
+      <div className="searchContainer d-flex position-sticky">
         <div className="d-flex justify-content-center align-items-center ">
           <a
             className="navbar-brand ms-5 margin-logo-search text-light fs-2 mt-2"

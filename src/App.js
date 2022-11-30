@@ -7,6 +7,7 @@ import RoomDetail from "./Components/RoomDetails/RoomDetail";
 import Register from "./Components/User/Register";
 import Login from "./Components/User/Login";
 import ContextApi from "./Components/ContextApi/api";
+import UserProfile from "./Components/User/UserProfile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             element={<RoomDetail />}
           />
           <Route path="/register" element={<Register />} />
+          <Route path="/bookings" element={<UserProfile />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </ContextApi>
