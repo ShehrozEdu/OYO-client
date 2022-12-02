@@ -4,7 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../ContextApi/api";
-const RoomsSection = () => {
+const RoomsSection = ({ result }) => {
   const { roomList, checkIn, checkOut } = useContext(DataContext);
 
   const responsive = {

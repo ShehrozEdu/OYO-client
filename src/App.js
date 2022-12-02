@@ -8,6 +8,7 @@ import Register from "./Components/User/Register";
 import Login from "./Components/User/Login";
 import ContextApi from "./Components/ContextApi/api";
 import UserProfile from "./Components/User/UserProfile";
+import AdminPanel from "./Components/User/AdminPanel";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/bookings" element={<UserProfile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </ContextApi>
     </>

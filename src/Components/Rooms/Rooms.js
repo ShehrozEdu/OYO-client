@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import SearchContainer2 from "../Rooms/SearchContainer2";
 import FilterSection from "./FilterSection";
 import RoomsSection from "./RoomsSection";
 import { DatePicker } from "antd";
@@ -14,15 +13,18 @@ const Rooms = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectLocation, setSelectLocation] = useState(null);
   const [duplicateRoom, setDuplicateRoom] = useState([]);
+  let [filterObj, setFilterObj] = useState({});
+  let [result, setResult] = useState([]);
 
   const { roomList, setRoomList, checkIn, setCheckIn, checkout, setCheckOut } =
     useContext(DataContext);
   const navigate = useNavigate();
+
   let locationRef = useRef();
   // console.log(checkIn);
   const { RangePicker } = DatePicker;
-  let getLocationList = async (event) => {
-    let city = event.target.value;
+  let getLocationList = async (e) => {
+    let city = e.target.value;
 
     if (city === "" || city.length < 2) {
       setSelectLocation(null);
@@ -117,7 +119,92 @@ const Rooms = () => {
       console.log(duplicateRoom);
     }
   };
+  //----------------------------------------------------
+  //--------------------Filter--------------------------//
+  //----------------------------------------------------
 
+  const filterAll = async (_filterObj) => {
+    _filterObj = { ..._filterObj };
+    try {
+      let url = "http://localhost:9000/api/filter-rooms";
+      const { data } = await axios.post(url, _filterObj);
+      // setRoomList(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    filterAll(filterObj);
+  }, [filterObj]);
+
+  let filterData = (e, option) => {
+    // console.log(filterObj);
+    let { value } = e.target;
+    let _filterObj = {};
+    switch (option) {
+      case "city":
+        _filterObj["city"] = value;
+        break;
+
+      case "collections":
+        let checked = e.target.checked;
+        let collections =
+          filterObj.collections == undefined ? [] : [...filterObj.collections];
+        if (checked) {
+          let isAvailable = collections.includes(Number(value));
+          if (isAvailable === false) collections.push(Number(value));
+        } else {
+          let position = collections.indexOf(Number(value));
+          collections.splice(position, 1);
+        }
+        if (collections.length > 0) {
+          _filterObj["collections"] = collections;
+        }
+
+        break;
+      case "accommodation":
+        let check = e.target.checked;
+        let accommodation =
+          filterObj.accommodation == undefined
+            ? []
+            : [...filterObj.accommodation];
+        if (check) {
+          let isAvailable = accommodation.includes(Number(value));
+          if (isAvailable === false) accommodation.push(Number(value));
+        } else {
+          let position = accommodation.indexOf(Number(value));
+          accommodation.splice(position, 1);
+        }
+        if (accommodation.length > 0) {
+          _filterObj["accommodation"] = accommodation;
+        }
+
+        break;
+      case "category":
+        let checkedd = e.target.checked;
+        let category =
+          filterObj.category == undefined ? [] : [...filterObj.category];
+        if (checkedd) {
+          let isAvailable = category.includes(Number(value));
+          if (isAvailable === false) category.push(Number(value));
+        } else {
+          let position = category.indexOf(Number(value));
+          category.splice(position, 1);
+        }
+        if (category.length > 0) {
+          _filterObj["category"] = category;
+        }
+
+        break;
+
+      default:
+        break;
+    }
+    setFilterObj({ ...filterObj, ..._filterObj });
+    console.log(filterObj);
+    console.log(_filterObj);
+  };
   return (
     <>
       <div className="searchContainer d-flex position-sticky">
@@ -221,6 +308,7 @@ const Rooms = () => {
         <FilterSection
           setRoomList={setRoomList}
           duplicateRoom={duplicateRoom}
+          filterData={filterData}
         />
         <RoomsSection />
       </div>

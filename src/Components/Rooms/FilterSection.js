@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const FilterSection = ({ setRoomList, duplicateRoom }) => {
+const FilterSection = ({ setRoomList, duplicateRoom, filterData }) => {
   const [searchKey, setSearchKey] = useState("");
   const filterBySearch = () => {
     const tempRooms = duplicateRoom.filter((room) =>
@@ -36,27 +36,57 @@ const FilterSection = ({ setRoomList, duplicateRoom }) => {
         <hr className="hr-filter fw-bold" />
         <div>
           <p className="mb-4 fw-bold">Collections</p>
-          <input type="checkbox" name="FamilyOYOs" id="familyOyo" />
+          <input
+            type="checkbox"
+            name="FamilyOYOs"
+            id="family"
+            value="1"
+            onChange={(e) => filterData(e, "collections")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="collections">
             Family OYO
           </label>
           <br />
-          <input type="checkbox" name="ForGroupTravelers" id="group" />
+          <input
+            type="checkbox"
+            name="Group"
+            id="group"
+            value="3"
+            onChange={(e) => filterData(e, "collections")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="collections">
             For Group Travelers
           </label>
           <br />
-          <input type="checkbox" name="LocalIDsAccepted" id="localId" />
+          <input
+            type="checkbox"
+            name="ID"
+            id="ID"
+            value="5"
+            onChange={(e) => filterData(e, "collections")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="collections">
             Local IDs Accepted
           </label>
           <br />
-          <input type="checkbox" name="OYOsWelcomesCouples" id="couples" />
+          <input
+            type="checkbox"
+            name="Couples"
+            id="couples"
+            value="2"
+            onChange={(e) => filterData(e, "collections")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="collections">
             OYOs Welcomes Couples
           </label>
           <br />
-          <input type="checkbox" name="BusinessTravelers" id="business" />
+          <input
+            type="checkbox"
+            name="BusinessTravelers"
+            id="business"
+            value="4"
+            onChange={(e) => filterData(e, "collections")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="collections">
             Business Travelers
           </label>
@@ -64,18 +94,37 @@ const FilterSection = ({ setRoomList, duplicateRoom }) => {
         </div>
         <hr className="hr-filter fw-bold" />
         <div>
+          {/* //Categories// */}
           <p className="mb-4 fw-bold">Categories</p>
-          <input type="checkbox" name="OYORooms" id="OYORooms" />
+          <input
+            type="checkbox"
+            name="OYO"
+            id="OYO"
+            value="1"
+            onChange={(e) => filterData(e, "categories")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="categories">
             OYO Rooms- Super Affordable
           </label>
           <br />
-          <input type="checkbox" name="Flagships" id="flagships" />
+          <input
+            type="checkbox"
+            name="Flagship"
+            id="flagship"
+            value="2"
+            onChange={(e) => filterData(e, "categories")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="categories">
             Flagships- Affordable Hotels at Prime
           </label>
           <br />
-          <input type="checkbox" name="CollectionO" id="collection" />
+          <input
+            type="checkbox"
+            name="Collection"
+            id="collection"
+            value="3"
+            onChange={(e) => filterData(e, "categories")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="categories">
             Collection O-For new age travelers
           </label>
@@ -84,12 +133,24 @@ const FilterSection = ({ setRoomList, duplicateRoom }) => {
         <hr className="hr-filter fw-bold" />
         <div>
           <p className="mb-4 fw-bold"> Accommodation Type</p>
-          <input type="checkbox" name="OYOHome" id="OYOHome" />
+          <input
+            type="checkbox"
+            name="OYO"
+            id="OYO"
+            value="1"
+            onChange={(e) => filterData(e, "accommodation")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="Accommodation">
             OYO Home
           </label>
           <br />
-          <input type="checkbox" name="Hotel" id="Hotel" />
+          <input
+            type="checkbox"
+            name="Hotel"
+            id="Hotel"
+            value="2"
+            onChange={(e) => filterData(e, "accommodation")}
+          />
           <label className="pb-3 ms-3 filter-label" htmlFor="Accommodation">
             Hotel
           </label>
