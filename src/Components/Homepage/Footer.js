@@ -27,7 +27,7 @@ const Footer = () => {
 
           <button
             type="button"
-            className="btn-footer d-flex justify-content-center align-items-center"
+            className="btn-footer me-lg-5 d-flex justify-content-center align-items-center"
           >
             <span className="me-2 ">
               <svg

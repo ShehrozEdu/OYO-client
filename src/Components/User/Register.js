@@ -1,30 +1,56 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useFormik } from "formik";
+import { signUpSchema } from "./YUPUserSchema/SignupSchema";
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmedPass, setConfirmedPass] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmedPass, setConfirmedPass] = useState("");
+
+  // const registerApi = async () => {
+  //   if (password === confirmedPass) {
+  //     const user = { name, email, password, confirmedPass };
+  //
+  //   } else {
+  //     alert("Passwords didn't match");
+  //   }
+  // };
   let navigate = useNavigate();
 
-  const registerApi = async () => {
-    if (password === confirmedPass) {
-      const user = { name, email, password, confirmedPass };
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: async (values, action) => {
+      console.log(values);
       try {
         let URL = "http://localhost:9000/api/register";
-        const { data } = await axios.post(URL, user);
+        const { data } = await axios.post(URL, values);
         localStorage.setItem("OYO_auth", JSON.stringify(data.user));
         // console.log(result);
         navigate("/login");
       } catch (error) {
         console.log(error);
       }
-    } else {
-      alert("Passwords didn't match");
-    }
-  };
+      action.resetForm();
+    },
+  });
+
   return (
     <>
       <div className="user-container-wrap col-12">
@@ -57,50 +83,75 @@ const Register = () => {
                   <p className="fw-bold ">Please fill the fields below</p>
                 </div>
                 <div className="register-inputs">
-                  <input
-                    type="text"
-                    value={name}
-                    className="form-control"
-                    placeholder="Enter your name"
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                  />
-                  <input
-                    type="text"
-                    value={email}
-                    className="form-control mt-3"
-                    placeholder="Enter your email"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                  />
-                  <input
-                    type="password"
-                    value={password}
-                    className="form-control mt-3"
-                    placeholder="Enter your password"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                  />
-                  <input
-                    type="password"
-                    value={confirmedPass}
-                    className="form-control mt-3"
-                    mt-3
-                    placeholder="Confirm your Password"
-                    onChange={(e) => {
-                      setConfirmedPass(e.target.value);
-                    }}
-                  />
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="name"
+                      className="form-control"
+                      placeholder="Enter your name"
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.name && touched.name ? (
+                      <p className="form-error small text-danger">
+                        {errors.name}
+                      </p>
+                    ) : null}
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="email"
+                      className="form-control mt-3"
+                      placeholder="Enter your email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error small text-danger">
+                        {errors.email}
+                      </p>
+                    ) : null}
+                    <input
+                      type="password"
+                      autoComplete="off"
+                      name="password"
+                      className="form-control mt-3"
+                      placeholder="Enter your password"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.password && touched.password ? (
+                      <p className="form-error small text-danger">
+                        {errors.password}
+                      </p>
+                    ) : null}
+                    <input
+                      type="password"
+                      autoComplete="off"
+                      name="confirm_password"
+                      className="form-control mt-3"
+                      placeholder="Confirm your Password"
+                      value={values.confirm_password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.confirm_password && touched.confirm_password ? (
+                      <p className="form-error small text-danger">
+                        {errors.confirm_password}
+                      </p>
+                    ) : null}
 
-                  <button
-                    className="btn w-75 ms-5 btn-success mt-3 px-3"
-                    onClick={registerApi}
-                  >
-                    Register
-                  </button>
+                    <button
+                      className="btn w-75 ms-5 btn-success mt-3 px-3"
+                      type="submit"
+                    >
+                      Register
+                    </button>
+                  </form>
                   <div className="mt-4 ">
                     <span className="">Already have an account?</span>
                     <Link

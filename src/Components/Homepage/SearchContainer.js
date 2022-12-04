@@ -11,12 +11,19 @@ const SearchContainer = () => {
   const [location, setLocation] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [selectLocation, setSelectLocation] = useState(null);
-  const { setRoomList, setCheckIn, setCheckOut } = useContext(DataContext);
+  let [cityName, setCityName] = useState([]);
+  const {
+    setRoomList,
+    setCheckIn,
+    setCheckOut,
+    setDuplicateRoom,
+    duplicateRoom,
+  } = useContext(DataContext);
   const navigate = useNavigate();
   let locationRef = useRef();
   const { RangePicker } = DatePicker;
-  let getLocationList = async (event) => {
-    let city = event.target.value;
+  let getLocationList = async (e) => {
+    let city = e.target.value;
 
     if (city === "" || city.length < 2) {
       setSelectLocation(null);
@@ -49,15 +56,20 @@ const SearchContainer = () => {
     try {
       let response = await axios.get(url);
       let { result } = response.data;
-      setRoomList([...result]);
-      const test = result.map((item) => item.name);
-      // console.log(result);
-      navigate("/rooms/" + test);
+      setCityName([...result]);
+      setDuplicateRoom([...result]);
+      const roomNavigate = result.map((item) => item.city_id);
+      console.log(selectLocation);
+
+      navigate(
+        `/rooms?city_id=${selectLocation.city_id}&id=${selectLocation._id}`
+      );
     } catch (error) {
       alert(error);
       console.log(error);
     }
   };
+
   let quantityInc = () => {
     setQuantity(quantity + 1);
   };
@@ -71,6 +83,42 @@ const SearchContainer = () => {
   const filterByDates = (dates) => {
     setCheckIn(moment(dates[0]).format("DD-MM-YYYY"));
     setCheckOut(moment(dates[1]).format("DD-MM-YYYY"));
+
+    let tempRooms = [];
+
+    let availability = false;
+
+    for (const room of duplicateRoom) {
+      if (room?.currentBookings?.length > 0) {
+        for (const bookings of room.currentBookings) {
+          if (
+            !moment(moment(dates[0]).format("DD-MM-YYYY")).isBetween(
+              bookings.checkInDate,
+              bookings.checkOutDate
+            ) &&
+            !moment(moment(dates[1]).format("DD-MM-YYYY")).isBetween(
+              bookings.checkInDate,
+              bookings.checkOutDate
+            )
+          ) {
+            if (
+              moment(dates[0]).format("DD-MM-YYYY") !== bookings.checkInDate &&
+              moment(dates[0]).format("DD-MM-YYYY") !== bookings.checkOutDate &&
+              moment(dates[1]).format("DD-MM-YYYY") !== bookings.checkInDate &&
+              moment(dates[1]).format("DD-MM-YYYY") !== bookings.checkOutDate
+            ) {
+              availability = true;
+            }
+          }
+        }
+      }
+      if (availability === true || room.currentBookings?.length === 0) {
+        tempRooms.push(room);
+        console.log(room);
+      }
+      setRoomList(tempRooms);
+      console.log(duplicateRoom);
+    }
   };
   return (
     <>

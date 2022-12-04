@@ -5,19 +5,30 @@ import { DatePicker } from "antd";
 import "antd/dist/antd.min.css";
 import moment from "moment";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { DataContext } from "../ContextApi/api";
+
 const Rooms = () => {
+  const [searchParams] = useSearchParams();
   const [open, setOpen] = useState(false);
   const [location, setLocation] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [selectLocation, setSelectLocation] = useState(null);
-  const [duplicateRoom, setDuplicateRoom] = useState([]);
+
   let [filterObj, setFilterObj] = useState({});
   let [result, setResult] = useState([]);
+  let [cityName, setCityName] = useState([]);
 
-  const { roomList, setRoomList, checkIn, setCheckIn, checkout, setCheckOut } =
-    useContext(DataContext);
+  const {
+    roomList,
+    setRoomList,
+    checkIn,
+    setCheckIn,
+    setDuplicateRoom,
+    duplicateRoom,
+    checkout,
+    setCheckOut,
+  } = useContext(DataContext);
   const navigate = useNavigate();
 
   let locationRef = useRef();
@@ -57,12 +68,11 @@ const Rooms = () => {
     try {
       let response = await axios.get(url);
       let { result } = response.data;
-      setRoomList([...result]);
+      setCityName([...result]);
       setDuplicateRoom([...result]);
-      const roomNavigate = result.map((item) => item.name);
-      // console.log(result);
-
-      navigate("/rooms/" + roomNavigate);
+      navigate(
+        `/rooms?city_id=${selectLocation.city_id}&id=${selectLocation._id}`
+      );
     } catch (error) {
       alert(error);
       console.log(error);
@@ -125,11 +135,15 @@ const Rooms = () => {
 
   const filterAll = async (_filterObj) => {
     _filterObj = { ..._filterObj };
+
+    let url = "http://localhost:9000/api/filter-rooms";
+    if (searchParams.get("city_id"))
+      _filterObj["city"] = searchParams.get("city_id");
     try {
-      let url = "http://localhost:9000/api/filter-rooms";
       const { data } = await axios.post(url, _filterObj);
-      // setRoomList(data);
-      console.log(data);
+      setCityName(data);
+
+      console.log(data, "filter");
     } catch (error) {
       console.log(error);
     }
@@ -310,7 +324,7 @@ const Rooms = () => {
           duplicateRoom={duplicateRoom}
           filterData={filterData}
         />
-        <RoomsSection />
+        <RoomsSection cityName={cityName} />
       </div>
     </>
   );

@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import Footer from "../Homepage/Footer";
+import Navbar from "../Homepage/Navbar";
 
 import { DataContext } from "../ContextApi/api";
 
@@ -42,7 +43,7 @@ const RoomDetail = () => {
   const totalDays =
     moment.duration(checkOutDate.diff(checkInDate)).asDays() + 1;
   // console.log(typeof total);
-  // const user= localStorage.getItem("OYO_AUTH")
+  const user = localStorage.getItem("OYO_Auth");
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -111,8 +112,11 @@ const RoomDetail = () => {
       console.log(error);
     }
   };
+  // console.log(params.checkIn);
+  // console.log(params.checkOut);
   return (
     <>
+      <Navbar />
       <div className="roomDetails-container">
         <div>
           <Carousel
@@ -126,9 +130,14 @@ const RoomDetail = () => {
             containerclassName="carousel-container"
             className="carousel-container-details"
           >
-            {roomsDetails.imageUrls?.map((item) => {
+            {roomsDetails.imageUrls?.map((item, index) => {
               return (
-                <img className="banner-img-details" src={item} alt="room" />
+                <img
+                  className="banner-img-details"
+                  src={item}
+                  key={index}
+                  alt="room"
+                />
               );
             })}
           </Carousel>
@@ -297,14 +306,79 @@ const RoomDetail = () => {
                 </svg>
                 <div className="border mt-3 d-flex">
                   <div className="left border-end p-5 ">
-                    <span className=" fw-bolder p-2 green-background text-light">
+                    <span className=" fw-bolder p-1 py-2 green-background text-light">
                       {roomsDetails.ratings}
                       <i className="ms-2 fa-solid fa-star me-2"></i>
                     </span>
                     <p className="small fw-bold m-0 p-0 mt-3">FABULOUS</p>
                     <p className="small m-0 p-0 ms-2">2 ratings</p>
                   </div>
-                  <div className="right p-5">PROGRESS BAR</div>
+                  <div className="right w-100 h-100 p-5">
+                    <div className="progress mb-2" style={{ height: "8px" }}>
+                      <div
+                        className="progress-bar  "
+                        role="progressbar"
+                        aria-label="Basic example"
+                        aria-valuenow="0"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        1 star
+                      </div>
+                    </div>
+                    <div className="progress mb-2" style={{ height: "8px" }}>
+                      <div
+                        className="progress-bar  "
+                        role="progressbar"
+                        aria-label="Basic example"
+                        style={{ width: "25%" }}
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        2 star
+                      </div>
+                    </div>
+                    <div className="progress mb-2" style={{ height: "8px" }}>
+                      <div
+                        className="progress-bar "
+                        role="progressbar"
+                        aria-label="Basic example"
+                        style={{ width: "50%" }}
+                        aria-valuenow="50"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        3 star
+                      </div>
+                    </div>
+                    <div className="progress mb-2" style={{ height: "8px" }}>
+                      <div
+                        className="progress-bar "
+                        role="progressbar"
+                        aria-label="Basic example"
+                        style={{ width: "75%" }}
+                        aria-valuenow="75"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        4 star
+                      </div>
+                    </div>
+                    <div className="progress mb-2" style={{ height: "8px" }}>
+                      <div
+                        className="progress-bar "
+                        role="progressbar"
+                        aria-label="Basic example"
+                        style={{ width: "100%" }}
+                        aria-valuenow="100"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        5 star
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div>
@@ -340,7 +414,9 @@ const RoomDetail = () => {
               <div className="bookingDate-details border p-1 shadow d-flex">
                 <div className="border-end me-1 p-2">
                   <span className="  small fw-bold">
-                    {`${params.checkIn} to ${params.checkOut}`}
+                    {params.checkIn && params.checkOut === "undefined"
+                      ? "Please choose Dates"
+                      : `${params.checkIn} to ${params.checkOut}`}
                   </span>
                 </div>
                 <div className="me-1 p-2">
@@ -355,9 +431,14 @@ const RoomDetail = () => {
                   <p style={{ fontWeight: "500" }}>Total Price</p>
                   <p>(inc of all taxes)</p>
                 </div>
-                <div className="fw-bold">&#8377;{totalAmount * totalDays}</div>
+                <div className="fw-bold">
+                  &#8377;
+                  {params.checkIn && params.checkOut === "undefined"
+                    ? 0
+                    : totalAmount * totalDays}
+                </div>
               </div>
-              {checkIn && checkOut && (
+              {user ? (
                 <div>
                   <StripeCheckout
                     token={onToken}
@@ -372,6 +453,12 @@ const RoomDetail = () => {
                       Continue to Book
                     </button>
                   </StripeCheckout>
+                </div>
+              ) : (
+                <div className="p-3">
+                  <a href="/login" className="small ms-3 fw-bold">
+                    Please Login first
+                  </a>
                 </div>
               )}
               <div className="small mt-2">

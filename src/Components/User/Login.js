@@ -1,24 +1,50 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginSchema } from "./YUPUserSchema/LoginSchema";
+import { useFormik } from "formik";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // // const [] = useState("");
   const navigate = useNavigate();
-  const loginAPI = async () => {
-    const user = { email, password };
-    try {
-      let URL = "http://localhost:9000/api/login";
-      const { data } = await axios.post(URL, user);
-      localStorage.setItem("OYO_Auth", JSON.stringify(data.user));
-      // console.log(data.user);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+  // const loginAPI = async () => {
+  //   const user = { email, password };
+  //   try {
+  //     let URL = "http://localhost:9000/api/login";
+  //     const { data } = await axios.post(URL, user);
+  //     localStorage.setItem("OYO_Auth", JSON.stringify(data.user));
+  //     // console.log(data.user);
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  const initialValues = {
+    email: "",
+    password: "",
   };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: LoginSchema,
+      onSubmit: async (values, action) => {
+        // console.log(values);
+        try {
+          let URL = "http://localhost:9000/api/login";
+          const { data } = await axios.post(URL, values);
+          localStorage.setItem("OYO_Auth", JSON.stringify(data.user));
+          console.log(data);
+          navigate("/");
+        } catch (error) {
+          alert("Email or Password didn't match");
+          console.log(error);
+        }
+        action.resetForm();
+      },
+    });
   return (
     <>
       <div className="user-container-wrap col-12">
@@ -51,40 +77,53 @@ const Login = () => {
                   <p className="fw-bold ">Please fill the fields below</p>
                 </div>
                 <div className="register-inputs">
-                  <input
-                    type="text"
-                    value={email}
-                    className="form-control mt-3"
-                    placeholder="Enter your email"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                  />
-                  <input
-                    type="password"
-                    value={password}
-                    className="form-control mt-3"
-                    placeholder="Enter your password"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                  />
-
-                  <button
-                    className="btn w-75 ms-5 btn-success mt-3 px-3"
-                    onClick={loginAPI}
-                  >
-                    Login
-                  </button>
-                  <div className="mt-4 ">
-                    <span className=""> New here?</span>
-                    <Link
-                      className="text-muted ms-1 alreadyAccount "
-                      to="/register"
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      name="email"
+                      autoComplete="off"
+                      className="form-control mt-3"
+                      placeholder="Enter your email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error small text-danger">
+                        {errors.email}
+                      </p>
+                    ) : null}
+                    <input
+                      type="password"
+                      name="password"
+                      autoComplete="off"
+                      className="form-control mt-3"
+                      placeholder="Enter your password"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.password && touched.password ? (
+                      <p className="form-error small text-danger">
+                        {errors.password}
+                      </p>
+                    ) : null}
+                    <button
+                      className="btn w-75 ms-5 btn-success mt-3 px-3"
+                      type="submit"
                     >
-                      Click to register
-                    </Link>
-                  </div>
+                      Login
+                    </button>
+                    <div className="mt-4 ">
+                      <span className=""> New here?</span>
+                      <Link
+                        className="text-muted ms-1 alreadyAccount "
+                        to="/register"
+                      >
+                        Click to register
+                      </Link>
+                    </div>
+                  </form>
                 </div>
               </div>
               <div className="user-right-bottom"></div>
