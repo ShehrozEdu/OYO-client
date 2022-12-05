@@ -1107,6 +1107,10 @@ p {
   p {
     line-height: 1 !important;
   }
+
+  .media-query-OYO-login {
+    margin-bottom: 0 !important;
+  }
 }
 @media screen and (min-width: 768.1px) and (max-width: 991px) {
   /* --------------//Filter Page--------------- */
