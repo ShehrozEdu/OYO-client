@@ -956,6 +956,22 @@ p {
     height: 6vh;
     width: 69vw;
   }
+
+  /* -----------------//Loginpage---------------- */
+  .user-container-body {
+    align-items: stretch;
+    margin-top: 15.2rem;
+    margin-left: 2rem;
+  }
+  .right-user-container-wrap {
+    width: 339px !important;
+  }
+  .user-container-header {
+    padding: 11px 20px;
+  }
+  .media-query-OYO-login {
+    margin-bottom: 0 !important;
+  }
 }
 /* -------------------------------//Medium devices-------------------- */
 @media screen and (min-width: 576.1px) and (max-width: 768px) {

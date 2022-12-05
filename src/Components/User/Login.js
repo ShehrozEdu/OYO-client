@@ -49,7 +49,10 @@ const Login = () => {
     <>
       <div className="user-container-wrap col-12">
         <div className="user-container-header d-flex align-items-center z-100   position-absolute">
-          <a className="navbar-brand  me-3 fs-1 fw-bolder text-light" href="/">
+          <a
+            className="navbar-brand media-query-OYO-login me-3 fs-1 fw-bolder text-light"
+            href="/"
+          >
             <span> OYO </span>
           </a>
           <span className="fs-5 fw-bold text-light">
@@ -57,7 +60,7 @@ const Login = () => {
           </span>
         </div>
         <div className="user-container-body d-flex wrap-row position-absolute   justify-content-space-between flex-grow d-flex z-100">
-          <div className="left-user-container d-flex flex-column ">
+          <div className="left-user-container d-lg-flex d-none flex-column ">
             <p className="user-left-text-head fs-1 fw-bolder m-0">
               There’s a smarter way to OYO around
             </p>
