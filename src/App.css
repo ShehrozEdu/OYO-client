@@ -958,10 +958,19 @@ p {
   }
 
   /* -----------------//Loginpage---------------- */
+  .user-container-wrap::before {
+    height: 128%;
+    width: 128%;
+  }
+  .user-container-wrap {
+    width: 128%;
+    min-height: 128vh;
+    height: 100%;
+  }
   .user-container-body {
     align-items: stretch;
     margin-top: 15.2rem;
-    margin-left: 2rem;
+    margin-left: 5rem;
   }
   .right-user-container-wrap {
     width: 339px !important;
