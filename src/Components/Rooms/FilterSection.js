@@ -115,7 +115,7 @@ const FilterSection = ({ setRoomList, duplicateRoom, filterData }) => {
             onChange={(e) => filterData(e, "categories")}
           />
           <label className="pb-3 ms-3 filter-label" htmlFor="categories">
-            Flagships- Affordable Hotels at Prime
+            Flagships- Affordable Hotels
           </label>
           <br />
           <input
@@ -126,7 +126,7 @@ const FilterSection = ({ setRoomList, duplicateRoom, filterData }) => {
             onChange={(e) => filterData(e, "categories")}
           />
           <label className="pb-3 ms-3 filter-label" htmlFor="categories">
-            Collection O-For new age travelers
+            CollectionO-For new age travelers
           </label>
           <br />
         </div>

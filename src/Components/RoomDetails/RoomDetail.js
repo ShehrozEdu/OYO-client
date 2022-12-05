@@ -60,7 +60,7 @@ const RoomDetail = () => {
   };
 
   let getRoomsDetails = async () => {
-    let URL = "http://localhost:9000/api/get-rooms/" + params.id;
+    let URL = "https://oyo-server.vercel.app/api/get-rooms/" + params.id;
     try {
       let response = await axios.get(URL);
 
@@ -95,7 +95,7 @@ const RoomDetail = () => {
     };
     try {
       const result = await axios.post(
-        "http://localhost:9000/api/book-rooms",
+        "https://oyo-server.vercel.app/api/book-rooms",
         bookingsDetails
       );
       // console.log(result);
@@ -142,9 +142,9 @@ const RoomDetail = () => {
             })}
           </Carousel>
         </div>
-        <div className="roomDetails-text-main d-flex col-12">
-          <div className="col-7 d-flex justify-content-space-between">
-            <div className="roomDetails-text-left p-5">
+        <div className="roomDetails-text-main d-lg-flex col-12">
+          <div className="col-lg-7 col-md-12 col-12 d-flex justify-content-space-between">
+            <div className="roomDetails-text-left p-lg-5 p-md-3 p-2">
               <h2 className="fw-bold ">{roomsDetails.name}</h2>
               <p className="small text-muted">{roomsDetails.area}</p>
               <span className="ratings-detail-border p-2">
@@ -397,7 +397,7 @@ const RoomDetail = () => {
               </div>
             </div>
           </div>
-          <div className="roomDetails-text-right p-5 col-5">
+          <div className="roomDetails-text-right p-lg-5 p-md-3 p-2 col-lg-5 col-md-10 col-12">
             <div className="d-flex flex-column p-3 testingWidth shadow">
               <div className="">
                 <span className="me-3 fw-bold fs-4">

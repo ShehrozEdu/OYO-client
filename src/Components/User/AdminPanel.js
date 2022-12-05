@@ -32,7 +32,7 @@ const AdminPanel = () => {
   const [ratings, setRatings] = useState();
 
   const getBookings = async () => {
-    let URL = "http://localhost:9000/api/admin-all-bookings";
+    let URL = "https://oyo-server.vercel.app/api/admin-all-bookings";
     const { data } = await axios.get(URL);
     setAdminBookings(data);
     // console.log(data);
@@ -42,7 +42,7 @@ const AdminPanel = () => {
   }, []);
 
   const getRooms = async () => {
-    let URL = "http://localhost:9000/api/get-rooms";
+    let URL = "https://oyo-server.vercel.app/api/get-rooms";
     const { data } = await axios.get(URL);
     setAdminRooms(data);
     // console.log(data);
@@ -51,7 +51,7 @@ const AdminPanel = () => {
     getRooms();
   }, []);
   const getUsers = async () => {
-    let URL = "http://localhost:9000/api/get-users";
+    let URL = "https://oyo-server.vercel.app/api/get-users";
     const { data } = await axios.get(URL);
     setUsers(data);
     // console.log(data);
@@ -84,7 +84,7 @@ const AdminPanel = () => {
       imageUrls: [imgUrl1, imgUrl2, imgUrl3],
     };
 
-    let url = "http://localhost:9000/api/add-new-room";
+    let url = "https://oyo-server.vercel.app/api/add-new-room";
     try {
       let { data } = await axios.post(url, newRoom);
       console.log(data);
@@ -212,29 +212,31 @@ const AdminPanel = () => {
                             <div className="col-12 pb-2 pb-lg-0 col-lg">
                               <strong>{book.roomsDetails}</strong>
                             </div>
-                            <div className="col-6 col-lg small small">
-                              <small className="d-lg-none mt-1">
+                            <div className="col-7 col-lg small small">
+                              <small className="d-lg-none mt-1 fw-bold">
                                 User ID
                                 <br />
                               </small>
                               {book.userId}
                             </div>
                             <div className="col-6 col-lg small">
-                              <small className="d-lg-none mt-1">
+                              <small className="d-lg-none mt-1 fw-bold">
                                 CheckIn
                                 <br />
                               </small>
                               {book.checkInDate}
                             </div>
                             <div className="col-6 col-lg small">
-                              <small className="d-lg-none mt-1">
+                              <small className="d-lg-none mt-1 fw-bold">
                                 CheckOut
                                 <br />
-                              </small>{" "}
+                              </small>
                               {book.checkOutDate}
                             </div>
                             <div className="col-6 col-lg small">
-                              <span className="d-lg-none">Status: </span>
+                              <span className="d-lg-none fw-bold">
+                                Status:{" "}
+                              </span>
                               {book.status}
                             </div>
                           </div>
@@ -286,14 +288,14 @@ const AdminPanel = () => {
                               <strong>{room.name}</strong>
                             </div>
                             <div className="col-6 col-lg small">
-                              <small className="d-lg-none mt-1">
+                              <small className="d-lg-none mt-1 fw-bold">
                                 Rent/day
                                 <br />
                               </small>
                               Rs. {room.actualRate}
                             </div>
                             <div className="col-6 col-lg small">
-                              <small className="d-lg-none mt-1">
+                              <small className="d-lg-none mt-1 fw-bold">
                                 City
                                 <br />
                               </small>
@@ -347,14 +349,14 @@ const AdminPanel = () => {
                             <strong>{room.name}</strong>
                           </div>
                           <div className="col-6 col-lg small">
-                            <small className="d-lg-none mt-1">
+                            <small className="d-lg-none mt-1 fw-bold">
                               Email
                               <br />
                             </small>
                             {room.email}
                           </div>
                           <div className="col-6 col-lg small">
-                            <small className="d-lg-none mt-1">
+                            <small className="d-lg-none mt-1 fw-bold">
                               Admin
                               <br />
                             </small>
@@ -380,10 +382,11 @@ const AdminPanel = () => {
             >
               {/* //First Row */}
               <div class="row g-3 mt-lg-3 mt-2">
-                <div class="col-sm-7 col-lg-3">
+                <div class="col-sm-12 col-md-9 col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example1"
                       class="form-control"
                       placeholder="Room Name"
@@ -392,10 +395,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example2"
                       class="form-control"
                       placeholder="Area"
@@ -404,10 +408,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="City"
@@ -416,10 +421,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Phone Number"
@@ -432,10 +438,11 @@ const AdminPanel = () => {
 
               {/* //Second Row */}
               <div class="row g-3 mt-lg-3 mt-2">
-                <div class="col-sm-7 col-lg-3">
+                <div class="col-sm-12 col-md-12 col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example1"
                       class="form-control"
                       placeholder="Collection1"
@@ -444,10 +451,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example2"
                       class="form-control"
                       placeholder="Collection2"
@@ -456,10 +464,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Amenities 1"
@@ -468,10 +477,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Amenities 2"
@@ -483,10 +493,11 @@ const AdminPanel = () => {
               </div>
               {/* //Third Row */}
               <div class="row g-3 mt-lg-3 mt-2">
-                <div class="col-sm-7 col-lg-3">
+                <div class="col-sm-12 col-md-12 col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example1"
                       class="form-control"
                       placeholder="Amenities 3"
@@ -495,10 +506,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example2"
                       class="form-control"
                       placeholder="Amenities 4"
@@ -507,10 +519,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Amenities 5"
@@ -519,10 +532,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Accommodation"
@@ -534,10 +548,11 @@ const AdminPanel = () => {
               </div>
               {/* //Fourth Row */}
               <div class="row g-3 mt-lg-3 mt-2">
-                <div class="col-sm-7 col-lg-3">
+                <div class="col-sm-12 col-md-12 col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example1"
                       class="form-control"
                       placeholder="Discounted Rate"
@@ -546,10 +561,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example2"
                       class="form-control"
                       placeholder="Actual Rate"
@@ -558,10 +574,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Room Description"
@@ -570,10 +587,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="City_id"
@@ -586,10 +604,11 @@ const AdminPanel = () => {
 
               {/* //Row 5 */}
               <div class="row g-3 mt-lg-3 mt-2">
-                <div class="col-sm-7 col-lg-3">
+                <div class="col-sm-12 col-md-12  col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example1"
                       class="form-control"
                       placeholder="Img Url 1"
@@ -598,10 +617,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example2"
                       class="form-control"
                       placeholder="Img Url 2"
@@ -610,10 +630,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Img Url 3"
@@ -622,10 +643,11 @@ const AdminPanel = () => {
                     />
                   </div>
                 </div>
-                <div class="col-sm col-lg-3">
+                <div class="col-sm col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example3"
                       class="form-control"
                       placeholder="Room Type"
@@ -636,10 +658,11 @@ const AdminPanel = () => {
                 </div>
               </div>
               <div class="row g-3 mt-lg-3 mt-2">
-                <div class="col-sm-7 col-lg-3">
+                <div class="col-sm-7 col-lg-3 col-md-12">
                   <div class="form-outline">
                     <input
                       type="text"
+                      required
                       id="form10Example1"
                       class="form-control"
                       placeholder="ratings"

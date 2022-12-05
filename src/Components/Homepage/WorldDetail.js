@@ -3,7 +3,7 @@ import React from "react";
 const WorldDetail = () => {
   return (
     <>
-      <div className="world-main-container  ">
+      <div className="world-main-container d-lg-flex  ">
         <div className="world-map position-relative">
           <div className="india-container position-absolute">
             <div className="common-location-wrap">
@@ -61,9 +61,10 @@ const WorldDetail = () => {
           <img
             src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetImage.jpg"
             alt="Map"
+            className="media-query-map-img"
           />
         </div>
-        <div className="world-detail d-flex flex-column justify-content-center m-lg-3">
+        <div className="world-detail d-flex flex-column justify-content-center m-3">
           <h3 className="fw-bolder my-2">
             World's leading chain of hotels and homes
           </h3>

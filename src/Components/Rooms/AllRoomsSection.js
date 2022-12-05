@@ -10,7 +10,7 @@ const RoomsSection = () => {
   const [rooms, setRooms] = useState([]);
 
   let getRooms = async () => {
-    let URL = "http://localhost:9000/api/get-rooms";
+    let URL = "https://oyo-server.vercel.app/api/get-rooms";
     try {
       let response = await axios.get(URL);
       let { status, rooms } = response.data;

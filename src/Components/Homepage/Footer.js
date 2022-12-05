@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <div className="footer-main-wrapper ">
-        <div className="footer-heading d-flex justify-content-center align-items-center">
+        <div className="footer-heading d-lg-flex d-md-flex d-none justify-content-center align-items-center">
           <div className="margin-logo-footer">
             <a className="navbar-brand ms-5 me-5 fs-2" href="/">
               <svg
@@ -74,7 +74,7 @@ const Footer = () => {
                 style={{ backgroundColor: "#000" }}
               >
                 <i className="fa-brands fa-apple fs-2 me-2 text-light "></i>
-                <div className="d-flex flex-column">
+                <div className="d-lg-flex d-md-flex d-none flex-column">
                   <div className="small text-light">Download on the</div>
                   <div className="text-light fw-bolder">APP STORE</div>
                 </div>
@@ -84,14 +84,14 @@ const Footer = () => {
                 style={{ backgroundColor: "#000" }}
               >
                 <i className="fa-brands fa-google-play fs-2 me-2 text-light "></i>
-                <div className="d-flex flex-column">
+                <div className="d-lg-flex d-md-flex d-none  flex-column">
                   <div className="small text-light">Get it on</div>
                   <div className="text-light fw-bolder">Google Play</div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="border-right d-flex second-footer-links  flex-wrap">
+          <div className="border-right d-lg-flex d-md-flex d-none second-footer-links  flex-wrap">
             <div className="d-flex flex-column flex-wrap me-3 ">
               <a href="" className="mb-3">
                 About us
@@ -104,7 +104,7 @@ const Footer = () => {
               </a>
               <a href="">Support</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5 ">
+            <div className="d-lg-flex d-md-flex d-none flex-column flex-wrap ms-5 ">
               <a href="" className="mb-3">
                 Official OYO Blog
               </a>
@@ -130,7 +130,7 @@ const Footer = () => {
               </a>
               <a href="">Support</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5 ">
+            <div className="d-lg-flex d-md-flex d-none flex-column flex-wrap ms-5 ">
               <a href="" className="mb-3">
                 Official OYO Blog
               </a>
@@ -145,162 +145,152 @@ const Footer = () => {
           </div>
         </div>
         <hr />
-        <div className="footerIcons-container">
-          <h4 className="mb-3">OYO Hotels</h4>
-          <div className=" d-flex second-footer-links-2  flex-wrap decoration-none">
+        <div className="footerIcons-container media-query-hide">
+          <h4 className="mb-3 text-white">OYO Hotels</h4>
+          <div className=" d-flex second-footer-links-2 mt-2  flex-wrap decoration-none">
             <div className="d-flex flex-column flex-wrap me-5 ">
               <a href="" className="mb-3">
-                About us
+                OYO in Pune
               </a>
               <a href="" className="mb-3">
-                Team/Careers
+                OYO in Delhi
               </a>
               <a href="" className="mb-3">
-                Blogs
+                OYO in Mumbai
               </a>
               <a href="" className="mb-3">
-                Support
+                OYO in Chandigarh
               </a>
               <a href="" className="mb-3">
-                About us
+                OYO in Goa
               </a>
               <a href="" className="mb-3">
-                Team/Careers
+                OYO in Jaipur
               </a>
               <a href="" className="mb-3">
-                Blogs
+                OYO in Telangana
               </a>
-              <a href="">Support</a>
+              <a href="">OYO in Jammu</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5 me-5 ">
+            <div className="d-flex flex-column flex-wrap me-5 ms-3 ">
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Pune
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Delhi
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Mumbai
               </a>
               <a href="" className="mb-3">
-                OYO Frames
+                OYO in Chandigarh
               </a>
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Goa
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Jaipur
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Telangana
               </a>
-              <a href="" className="mb-3">
-                OYO Frames
-              </a>
+              <a href="">OYO in Jammu</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5 me-5 ">
+            <div className="d-flex flex-column flex-wrap me-5 ms-3">
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Pune
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Delhi
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Mumbai
               </a>
               <a href="" className="mb-3">
-                OYO Frames
+                OYO in Chandigarh
               </a>
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Goa
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Jaipur
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Telangana
               </a>
-              <a href="" className="mb-3">
-                OYO Frames
-              </a>
+              <a href="">OYO in Jammu</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5 me-5 ">
+            <div className="d-flex flex-column flex-wrap me-5 ms-3">
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Pune
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Delhi
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Mumbai
               </a>
               <a href="" className="mb-3">
-                OYO Frames
+                OYO in Chandigarh
               </a>
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Goa
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Jaipur
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Telangana
               </a>
-              <a href="" className="mb-3">
-                OYO Frames
-              </a>
+              <a href="">OYO in Jammu</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5 me-4 ">
+            <div className="d-flex flex-column flex-wrap me-5 ms-3">
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Pune
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Delhi
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Mumbai
               </a>
               <a href="" className="mb-3">
-                OYO Frames
+                OYO in Chandigarh
               </a>
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Goa
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Jaipur
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Telangana
               </a>
-              <a href="" className="mb-3">
-                OYO Frames
-              </a>
+              <a href="">OYO in Jammu</a>
             </div>
-            <div className="d-flex flex-column flex-wrap ms-5  ">
+            <div className="d-flex flex-column ms-5 flex-wrap  ">
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Pune
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Delhi
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Mumbai
               </a>
               <a href="" className="mb-3">
-                OYO Frames
+                OYO in Chandigarh
               </a>
               <a href="" className="mb-3">
-                Official OYO Blog
+                OYO in Goa
               </a>
               <a href="" className="mb-3">
-                Investor Relationns
+                OYO in Jaipur
               </a>
               <a href="" className="mb-3">
-                OYO Circle
+                OYO in Telangana
               </a>
-              <a href="" className="mb-3">
-                OYO Frames
-              </a>
+              <a href="">OYO in Jammu</a>
             </div>
           </div>
         </div>
@@ -328,7 +318,12 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="icoLinkedin me-3" title="Linkedin">
+              <a
+                href="https://www.linkedin.com/in/shehrozbatt/"
+                className="icoLinkedin me-3"
+                title="Linkedin"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </li>

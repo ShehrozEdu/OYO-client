@@ -8,7 +8,7 @@ const UserProfile = () => {
 
   const getBookings = async () => {
     try {
-      let Url = "http://localhost:9000/api/getBookingsByUserId/";
+      let Url = "https://oyo-server.vercel.app/api/getBookingsByUserId/";
       let { data } = await axios.post(Url, { userId: user._id });
       console.log(data);
       setBookings(data);
@@ -21,7 +21,7 @@ const UserProfile = () => {
   }, []);
 
   const cancelBooking = async (bookingId, roomId) => {
-    const url = "http://localhost:9000/api/cancel-booking";
+    const url = "https://oyo-server.vercel.app/api/cancel-booking";
     try {
       const { data } = await axios.post(url, { bookingId, roomId });
       console.log(data);

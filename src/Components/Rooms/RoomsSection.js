@@ -17,7 +17,7 @@ const RoomsSection = ({ cityName }) => {
       items: 1,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 576, min: 0 },
       items: 1,
     },
   };
@@ -31,19 +31,22 @@ const RoomsSection = ({ cityName }) => {
   };
   return (
     <>
-      <div className="p-4 col-9  roomSection-container">
+      <div className="p-4 col-lg-9 col-md-10 col-12  roomSection-container">
         <div>
           <h4>{`${cityName.length} OYOs in this city`}</h4>
           <hr className="hr-filter" />
           <img
-            className="border-end cursor-pointer"
+            className="border-end offer-banner cursor-pointer d-lg-block d-md-block d-none"
             src="/img/offer.png"
             alt="offer"
           />
         </div>
         {cityName.map((item, index) => {
           return (
-            <div className="d-flex mt-5" key={index}>
+            <div
+              className="d-flex flex-lg-row flex-md-row flex-sm-row flex-column mt-5"
+              key={index}
+            >
               <Carousel
                 responsive={responsive}
                 swipeable={true}
@@ -68,7 +71,7 @@ const RoomsSection = ({ cityName }) => {
               </Carousel>
               <div className="ms-2 ">
                 <h5
-                  className="fw-bold  cursor-pointer"
+                  className="fw-bold hotel-name cursor-pointer"
                   onClick={() => goToDetails(item._id)}
                 >
                   {item.name}
@@ -81,11 +84,11 @@ const RoomsSection = ({ cityName }) => {
                   </span>
                   <span> (2 ratings) . Fabulous</span>
                 </p>
-                <p className="small">
+                <p className="small d-md-flex flex-md-column d-lg-inline ">
                   {item.amenities.map((value, index) => {
                     return (
                       <span key={index}>
-                        <i className="bx bx-check-circle me-2 ms-1"></i>
+                        <i className="bx bx-check-circle me-lg-2 me-md-1 me-sm-2 ms-1"></i>
                         {value}
                       </span>
                     );

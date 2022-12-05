@@ -10,23 +10,20 @@ import { DataContext } from "../ContextApi/api";
 
 const Rooms = () => {
   const [searchParams] = useSearchParams();
-  const [open, setOpen] = useState(false);
   const [location, setLocation] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [selectLocation, setSelectLocation] = useState(null);
 
   let [filterObj, setFilterObj] = useState({});
-  let [result, setResult] = useState([]);
   let [cityName, setCityName] = useState([]);
 
   const {
-    roomList,
     setRoomList,
-    checkIn,
     setCheckIn,
     setDuplicateRoom,
     duplicateRoom,
-    checkout,
+    checkIn,
+    checkOut,
     setCheckOut,
   } = useContext(DataContext);
   const navigate = useNavigate();
@@ -43,7 +40,8 @@ const Rooms = () => {
 
       return false;
     }
-    let url = "http://localhost:9000/api/get-location-by-name?city=" + city;
+    let url =
+      "https://oyo-server.vercel.app/api/get-location-by-name?city=" + city;
 
     try {
       let response = await axios.get(url);
@@ -63,7 +61,7 @@ const Rooms = () => {
   let getRoomFiltered = async () => {
     let room = locationRef.current.value;
 
-    let url = `http://localhost:9000/api/get-room-location-by-id?lid=${selectLocation.city_id}&city=${room}`;
+    let url = `https://oyo-server.vercel.app/api/get-room-location-by-id?lid=${selectLocation.city_id}&city=${room}`;
 
     try {
       let response = await axios.get(url);
@@ -79,16 +77,6 @@ const Rooms = () => {
     }
   };
 
-  let quantityInc = () => {
-    setQuantity(quantity + 1);
-  };
-  let quantityDec = () => {
-    if (quantity < 1) {
-      setQuantity(quantity);
-    } else {
-      setQuantity(quantity - 1);
-    }
-  };
   const filterByDates = (dates) => {
     setCheckIn(moment(dates[0]).format("DD-MM-YYYY"));
     setCheckOut(moment(dates[1]).format("DD-MM-YYYY"));
@@ -123,10 +111,10 @@ const Rooms = () => {
       }
       if (availability === true || room.currentBookings?.length === 0) {
         tempRooms.push(room);
-        console.log(room);
+        // console.log(room);
       }
       setRoomList(tempRooms);
-      console.log(duplicateRoom);
+      // console.log(duplicateRoom);
     }
   };
   //----------------------------------------------------
@@ -136,14 +124,14 @@ const Rooms = () => {
   const filterAll = async (_filterObj) => {
     _filterObj = { ..._filterObj };
 
-    let url = "http://localhost:9000/api/filter-rooms";
+    let url = "https://oyo-server.vercel.app/api/filter-rooms";
     if (searchParams.get("city_id"))
       _filterObj["city"] = searchParams.get("city_id");
     try {
       const { data } = await axios.post(url, _filterObj);
       setCityName(data);
 
-      console.log(data, "filter");
+      // console.log(data, "filter");
     } catch (error) {
       console.log(error);
     }
@@ -163,13 +151,16 @@ const Rooms = () => {
 
       case "collections":
         let checked = e.target.checked;
+
         let collections =
           filterObj.collections == undefined ? [] : [...filterObj.collections];
         if (checked) {
           let isAvailable = collections.includes(Number(value));
+
           if (isAvailable === false) collections.push(Number(value));
         } else {
           let position = collections.indexOf(Number(value));
+
           collections.splice(position, 1);
         }
         if (collections.length > 0) {
@@ -216,30 +207,29 @@ const Rooms = () => {
         break;
     }
     setFilterObj({ ...filterObj, ..._filterObj });
-    console.log(filterObj);
-    console.log(_filterObj);
+    // console.log(filterObj);
+    // console.log(_filterObj);
   };
   return (
     <>
-      <div className="searchContainer d-flex position-sticky">
+      <div className="searchContainer d-lg-flex d-md-flex position-sticky">
         <div className="d-flex justify-content-center align-items-center ">
           <a
-            className="navbar-brand ms-5 margin-logo-search text-light fs-2 mt-2"
+            className="navbar-brand ms-lg-5 margin-logo-search text-light fs-2 mt-2"
             href="/"
           >
             <strong>OYO</strong>
           </a>
         </div>
         <div className="searchContainer__wrapper mt-2 ">
-          <div className="p-lg-4 ms-lg-5 d-flex justify-content-center align-items-center searchInput position-relative">
+          <div className="p-lg-4 ms-lg-5 d-lg-flex d-md-flex justify-content-center align-items-center searchInput position-relative">
             <div className="d-flex flex-column justify-content-center align-items-center">
               <input
                 type="text"
                 placeholder="Search for a location"
-                className="p-lg-2 searchInput fw-bold"
+                className="p-lg-2 mb-lg-0 mb-md-0 mb-3 searchInput fw-bold"
                 onChange={getLocationList}
                 ref={locationRef}
-                onClick={() => setOpen(false)}
               />
               <div className="list-group position-absolute location_list ">
                 {location.map((location) => {
@@ -259,66 +249,23 @@ const Rooms = () => {
             </div>
             <div>
               <RangePicker
-                className="p-lg-2 searchInput fw-bolder"
-                onClick={() => setOpen(false)}
+                className="p-lg-2 searchInput fw-bolder mb-lg- mb-md-0 mb-3"
                 onChange={filterByDates}
               />
             </div>
-            <div>
-              <input
-                type="text"
-                placeholder={`1 Room, ${quantity} Guest`}
-                className="p-lg-2 searchInput fw-bold"
-                onClick={() => setOpen(true)}
-              />
-              {open && (
-                <div className="list-group position-absolute location_list ">
-                  <li
-                    className="list-group-item list-group-item-action list-group-item mb-0 position-relative cursor-pointer "
-                    key={location._id}
-                  >
-                    <div className="d-flex justify-content-between fw-bold">
-                      <p className="ms-3">Rooms</p>
-                      <p className="me-3">Guests</p>
-                    </div>
-                    <hr style={{ color: "black" }} />
-                    <div className="d-flex justify-content-between ">
-                      <p className="ms-3">Room</p>
-                      <div className="d-flex justify-content-center ">
-                        <span
-                          className="me-2 border cursor-pointer btnAdd"
-                          onClick={() => quantityDec()}
-                        >
-                          -
-                        </span>
-                        <span className="me-2">{quantity}</span>
-                        <span
-                          className="ms-1 border cursor-pointer btnAdd"
-                          onClick={() => quantityInc()}
-                        >
-                          +
-                        </span>
-                      </div>
-                    </div>
 
-                    <div className="d-flex justify-content-between mt-3">
-                      <p>Delete Room</p>
-                      <p>Add Room</p>
-                    </div>
-                  </li>
-                </div>
-              )}
-            </div>
-            <button
-              className="btn btn-success px-5 py-3 "
-              onClick={() => getRoomFiltered()}
-            >
-              Search
-            </button>
+            {checkIn && checkOut && (
+              <button
+                className="btn btn-success px-5 py-3 search-btn-media-query mt-lg-0 mt-md-0 mt-2"
+                onClick={() => getRoomFiltered()}
+              >
+                Search
+              </button>
+            )}
           </div>
         </div>
       </div>
-      <div className="d-flex">
+      <div className="d-flex flex-lg-row flex-md-row flex-column">
         <FilterSection
           setRoomList={setRoomList}
           duplicateRoom={duplicateRoom}

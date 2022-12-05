@@ -39,7 +39,7 @@ const Register = () => {
     onSubmit: async (values, action) => {
       console.log(values);
       try {
-        let URL = "http://localhost:9000/api/register";
+        let URL = "https://oyo-server.vercel.app/api/register";
         const { data } = await axios.post(URL, values);
         localStorage.setItem("OYO_auth", JSON.stringify(data.user));
         // console.log(result);

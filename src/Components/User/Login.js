@@ -12,7 +12,7 @@ const Login = () => {
   // const loginAPI = async () => {
   //   const user = { email, password };
   //   try {
-  //     let URL = "http://localhost:9000/api/login";
+  //     let URL = "https://oyo-server.vercel.app/api/login";
   //     const { data } = await axios.post(URL, user);
   //     localStorage.setItem("OYO_Auth", JSON.stringify(data.user));
   //     // console.log(data.user);
@@ -33,7 +33,7 @@ const Login = () => {
       onSubmit: async (values, action) => {
         // console.log(values);
         try {
-          let URL = "http://localhost:9000/api/login";
+          let URL = "https://oyo-server.vercel.app/api/login";
           const { data } = await axios.post(URL, values);
           localStorage.setItem("OYO_Auth", JSON.stringify(data.user));
           console.log(data);
