@@ -345,7 +345,7 @@ const SearchContainer = () => {
             <div className="d-flex flex-column justify-content-center align-items-center search-input-media-query">
               <input
                 type="text"
-                placeholder="Search for a location"
+                placeholder="Search for the city"
                 className="p-lg-2 searchInput fw-bold"
                 onChange={getLocationList}
                 ref={locationRef}

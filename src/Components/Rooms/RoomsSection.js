@@ -5,7 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../ContextApi/api";
 const RoomsSection = ({ cityName }) => {
-  const { roomList, checkIn, checkOut } = useContext(DataContext);
+  const { checkIn, checkOut, price } = useContext(DataContext);
 
   const responsive = {
     desktop: {
@@ -41,78 +41,86 @@ const RoomsSection = ({ cityName }) => {
             alt="offer"
           />
         </div>
-        {cityName.map((item, index) => {
-          return (
-            <div
-              className="d-flex flex-lg-row flex-md-row flex-sm-row flex-column mt-5"
-              key={index}
-            >
-              <Carousel
-                responsive={responsive}
-                swipeable={true}
-                draggable={true}
-                infinite={true}
-                autoPlay={false}
-                dotListclassName="custom-dot-list-style"
-                itemclassName="carousel-item-padding-40-px"
-                containerclassName="carousel-container"
-                className="carousel-container  cursor-pointer"
+
+        {cityName
+          .filter((item) => {
+            return price <= item.discountedRate;
+          })
+          .map((item, index) => {
+            return (
+              <div
+                className="d-flex flex-lg-row flex-md-row flex-sm-row flex-column mt-5"
+                key={index}
               >
-                {item.imageUrls.map((value, index) => {
-                  return (
-                    <img
-                      className="banner-img"
-                      src={value}
-                      alt="room"
-                      key={index}
-                    />
-                  );
-                })}
-              </Carousel>
-              <div className="ms-2 ">
-                <h5
-                  className="fw-bold hotel-name cursor-pointer"
-                  onClick={() => goToDetails(item._id)}
+                <Carousel
+                  responsive={responsive}
+                  swipeable={true}
+                  draggable={true}
+                  infinite={true}
+                  autoPlay={false}
+                  dotListclassName="custom-dot-list-style"
+                  itemclassName="carousel-item-padding-40-px"
+                  containerclassName="carousel-container"
+                  className="carousel-container  cursor-pointer"
                 >
-                  {item.name}
-                </h5>
-                <p className="small">{item.area}</p>
-                <p className="small">{item.city}</p>
-                <p className="small">
-                  <span className="ratings text-light p-1 ">
-                    {item.ratings} <i className="fa-solid fa-star"></i>
-                  </span>
-                  <span> (2 ratings) . Fabulous</span>
-                </p>
-                <p className="small d-md-flex flex-md-column d-lg-inline ">
-                  {item.amenities.map((value, index) => {
+                  {item.imageUrls.map((value, index) => {
                     return (
-                      <span key={index}>
-                        <i className="bx bx-check-circle me-lg-2 me-md-1 me-sm-2 ms-1"></i>
-                        {value}
-                      </span>
+                      <img
+                        className="banner-img"
+                        src={value}
+                        alt="room"
+                        key={index}
+                      />
                     );
                   })}
-                </p>
-                <div className="room-pricing-margin">
-                  <span
-                    className="me-3 fw-bold fs-4"
-                    style={{ color: "rgb(238, 42, 36)" }}
+                </Carousel>
+                <div className="ms-2 ">
+                  <h5
+                    className="fw-bold hotel-name cursor-pointer"
+                    onClick={() => goToDetails(item._id)}
                   >
-                    &#8377; {item.discountedRate}
-                  </span>
-                  <span>
-                    <strike>&#8377; {item.actualRate}</strike>
-                  </span>
-                  <span className="ms-3" style={{ color: "rgb(245, 166, 35)" }}>
-                    47% off
-                  </span>
-                  <p className="small">per room per night</p>
+                    {item.name}
+                  </h5>
+                  <p className="small">{item.area}</p>
+                  <p className="small">{item.city}</p>
+                  <p className="small">
+                    <span className="ratings text-light p-1 ">
+                      {item.ratings} <i className="fa-solid fa-star"></i>
+                    </span>
+                    <span> (2 ratings) . Fabulous</span>
+                  </p>
+                  <p className="small d-md-flex flex-md-column d-lg-inline ">
+                    {item.amenities.map((value, index) => {
+                      return (
+                        <span key={index}>
+                          <i className="bx bx-check-circle me-lg-2 me-md-1 me-sm-2 ms-1"></i>
+                          {value}
+                        </span>
+                      );
+                    })}
+                  </p>
+                  <div className="room-pricing-margin">
+                    <span
+                      className="me-3 fw-bold fs-4"
+                      style={{ color: "rgb(238, 42, 36)" }}
+                    >
+                      &#8377; {item.discountedRate}
+                    </span>
+                    <span>
+                      <strike>&#8377; {item.actualRate}</strike>
+                    </span>
+                    <span
+                      className="ms-3"
+                      style={{ color: "rgb(245, 166, 35)" }}
+                    >
+                      47% off
+                    </span>
+                    <p className="small">per room per night</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </>
   );

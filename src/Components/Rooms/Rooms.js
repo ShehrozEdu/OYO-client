@@ -153,7 +153,7 @@ const Rooms = () => {
         let checked = e.target.checked;
 
         let collections =
-          filterObj.collections == undefined ? [] : [...filterObj.collections];
+          filterObj.collections === undefined ? [] : [...filterObj.collections];
         if (checked) {
           let isAvailable = collections.includes(Number(value));
 
@@ -171,7 +171,7 @@ const Rooms = () => {
       case "accommodation":
         let check = e.target.checked;
         let accommodation =
-          filterObj.accommodation == undefined
+          filterObj.accommodation === undefined
             ? []
             : [...filterObj.accommodation];
         if (check) {
@@ -189,7 +189,7 @@ const Rooms = () => {
       case "category":
         let checkedd = e.target.checked;
         let category =
-          filterObj.category == undefined ? [] : [...filterObj.category];
+          filterObj.category === undefined ? [] : [...filterObj.category];
         if (checkedd) {
           let isAvailable = category.includes(Number(value));
           if (isAvailable === false) category.push(Number(value));
@@ -226,7 +226,7 @@ const Rooms = () => {
             <div className="d-flex flex-column justify-content-center align-items-center">
               <input
                 type="text"
-                placeholder="Search for a location"
+                placeholder="Search for the city"
                 className="p-lg-2 mb-lg-0 mb-md-0 mb-3 searchInput fw-bold"
                 onChange={getLocationList}
                 ref={locationRef}
@@ -270,6 +270,7 @@ const Rooms = () => {
           setRoomList={setRoomList}
           duplicateRoom={duplicateRoom}
           filterData={filterData}
+          cityName={cityName}
         />
         <RoomsSection cityName={cityName} />
       </div>

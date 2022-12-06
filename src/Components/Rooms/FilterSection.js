@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { DataContext } from "../ContextApi/api";
 
-const FilterSection = ({ setRoomList, duplicateRoom, filterData }) => {
+const FilterSection = ({
+  setRoomList,
+  duplicateRoom,
+  filterData,
+  cityName,
+}) => {
+  const { price, setPrice } = useContext(DataContext);
   const [searchKey, setSearchKey] = useState("");
+
   const filterBySearch = () => {
     const tempRooms = duplicateRoom.filter((room) =>
       room.name?.toLowerCase()?.includes(searchKey?.toLowerCase())
     );
     setRoomList(tempRooms);
+  };
+  const handleInput = (e) => {
+    setPrice(e.target.value);
   };
   return (
     <>
@@ -24,13 +35,14 @@ const FilterSection = ({ setRoomList, duplicateRoom, filterData }) => {
           onKeyUp={filterBySearch}
         />
         <label htmlFor="customRange2" className="form-label mt-3 fw-bold">
-          Price
+          Price {price}
         </label>
         <input
           type="range"
+          onInput={handleInput}
           className="form-range"
-          min="500"
-          max="50000"
+          min="399"
+          max="9999"
           id="customRange2"
         ></input>
         <hr className="hr-filter fw-bold" />

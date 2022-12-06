@@ -8,6 +8,7 @@ const ContextApi = ({ children }) => {
   const [checkIn, setCheckIn] = useState();
   const [checkOut, setCheckOut] = useState();
   const [duplicateRoom, setDuplicateRoom] = useState([]);
+  const [price, setPrice] = useState([]);
   return (
     <DataContext.Provider
       value={{
@@ -19,6 +20,8 @@ const ContextApi = ({ children }) => {
         setCheckOut,
         duplicateRoom,
         setDuplicateRoom,
+        price,
+        setPrice,
       }}
     >
       {children}
