@@ -24,7 +24,9 @@ const UserProfile = () => {
     const url = "https://oyo-server.vercel.app/api/cancel-booking";
     try {
       const { data } = await axios.post(url, { bookingId, roomId });
-      console.log(data);
+      if(data){
+	window.location.reload()
+	}
     } catch (error) {
       console.log(error);
     }

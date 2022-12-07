@@ -113,7 +113,7 @@ const Rooms = () => {
         tempRooms.push(room);
         // console.log(room);
       }
-      setRoomList(tempRooms);
+      setCityName(tempRooms);
       // console.log(duplicateRoom);
     }
   };
