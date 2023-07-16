@@ -1,70 +1,58 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **OYO Clone - MERN Stack Hotel Booking Application**
 
-## Available Scripts
+## **Overview**
+This is an OYO clone, a MERN stack-based hotel booking application inspired by OYO Rooms, an Indian multinational hospitality chain. The application allows users to search and book rooms, apply filters for specific preferences, and make secure payments through the Stripe payment gateway. It also includes an admin panel to manage hotel listings and bookings. The project is built using the following technologies: React.js, Node.js, Express.js, Bootstrap, MongoDB, and integrates various libraries like AntD and Axios for efficient development.
 
-In the project directory, you can run:
+**Tech Stack**
+Front-end: React.js, Bootstrap, AntD, Axios
+Back-end: Node.js, Express.js
+Database: MongoDB
+Payment Gateway: Stripe
+**Features**
+**Dates Sorting**: The application allows users to sort and view available rooms based on their preferred check-in and check-out dates.
 
-### `npm start`
+**Room Bookings:** Users can select and book rooms with ease, providing a smooth booking experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Filtering Rooms:** Users can apply filters to find rooms based on categories, accommodation types, and other preferences.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Admin Panel:** The admin panel allows authorized personnel to manage hotel listings, view bookings, and perform administrative tasks.
 
-### `npm test`
+**Stripe Payment Gateway:** Integrated Stripe to ensure secure and seamless payment processing for room bookings.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Responsive Code:** The application is designed with a responsive approach, ensuring optimal user experience across different devices and screen sizes.
 
-### `npm run build`
+## **Areas of Responsibility**
+**Front-end Development:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Implemented the front-end using React.js, Bootstrap, AntD, and Axios as the HTTP library.
+Designed user interfaces to provide an intuitive and visually appealing experience for users.
+Ensured responsive design to accommodate various devices and screen resolutions.
+**Rooms with Backend:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Developed the backend functionality using Node.js and Express.js for handling room-related operations.
+Integrated MongoDB as the database to store room information, bookings, and user data.
+**Stripe Payment Gateway:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Implemented the integration of the Stripe payment gateway to enable secure and smooth transactions.
+Filtering Rooms with Category and Accommodation:
 
-### `npm run eject`
+Developed the filtering feature to allow users to search for rooms based on categories and accommodation preferences.
+Installation and Usage
+Clone the repository from GitHub.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Install the required dependencies using npm:
+**npm install**
+Configure the MongoDB connection settings in the backend code.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Set up the Stripe API keys in the application to enable the payment gateway.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run the application:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**npm start**
+The application should now be accessible at the specified address.
 
-## Learn More
+### **Note**
+This project is intended for educational purposes and showcases the implementation of a hotel booking application using the MERN stack. It is not affiliated with or endorsed by the official OYO Rooms platform.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to explore the code and adapt it to suit your own needs or use it as a learning resource to understand the MERN stack and related technologies. Happy coding! 🚀
